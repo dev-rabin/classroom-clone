@@ -3,9 +3,6 @@ const app = express();
 const port = 4000;
 const db = require('./src/connection');
 
-
-
-
 app.listen(port, ()=>{
     console.log(`Server starting at ${port}`);
 });
