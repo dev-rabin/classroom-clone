@@ -3,6 +3,9 @@ const app = express();
 const port = 4000;
 const db = require('./src/connection');
 
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.listen(port, ()=>{
     console.log(`Server starting at ${port}`);
 });
@@ -17,4 +20,4 @@ app.get('/user', (req, res)=> {
     })
 });
 const userRouter = require('./src/routes/user_routes');
-app.use('/api/user', userRouter);
+app.use('/api', userRouter);
