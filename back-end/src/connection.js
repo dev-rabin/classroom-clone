@@ -1,12 +1,14 @@
 const mysql = require("mysql"); 
 
-let db = mysql.createConnection({ 
+//Mysql Connection
+const db = mysql.createConnection({ 
 	host: "localhost", 
 	user: "root", 
 	password: '',
     database: "classroom"
 }); 
 
+//Database connection
 db.connect((err) => { 
 	if (err) { 
 	console.log("Database Connection Failed !!!", err); 

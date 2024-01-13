@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 const port = 4000;
-const db = require('./src/user.js');
+const db = require('./src/connection');
+
+
 
 
 app.listen(port, ()=>{
@@ -17,3 +19,5 @@ app.get('/user', (req, res)=> {
         }
     })
 });
+const userRouter = require('./src/routes/user_routes');
+app.use('/api/user', userRouter);
