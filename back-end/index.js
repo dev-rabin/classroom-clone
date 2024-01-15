@@ -2,10 +2,11 @@ const express = require('express');
 const app = express();
 const port = 4000;
 const db = require('./src/connection');
-
+const cors = require('cors');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 app.listen(port, ()=>{
     console.log(`Server starting at ${port}`);
 });
