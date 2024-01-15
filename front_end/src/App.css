@@ -1,0 +1,19 @@
+
+.navbar{
+    background-color: gray;
+}
+.navbar a{
+    color: white;
+    font-weight: 600;
+}
+/* .registration{
+    /* border: 2px solid black; */
+    /* margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; */
+.container input{
+    border: 2px solid rgb(36, 99, 37);
+    border-radius: 8px;
+}
+
