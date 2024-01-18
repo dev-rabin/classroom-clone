@@ -15,6 +15,11 @@ function NavbarPage() {
             <Nav.Link href="#assignments">Assignments</Nav.Link>
             <Nav.Link href="#about">About</Nav.Link>
           </Nav>
+          <Nav className="">
+            <Nav.Link href="">Login</Nav.Link>
+            <Nav.Link href="#logout">Sign Out</Nav.Link>
+          </Nav>
+
         </Navbar.Collapse>
       </Container>
     </Navbar>

@@ -34,6 +34,20 @@ const Usercontroller = {
                 res.json({ message: 'User added successfully', id: result.insertId });
             }
         });
+    },
+    //Login User
+    loginUser :(req, res) =>{
+        const {email, password} = req.body;
+        const loginQuery = 'select * from users where email=? & password=?';
+        db.query(loginQuery, [email,password], (error, result) => {
+            if (error) {
+                console.log('Error in Login',error);
+                res.json({message:error})
+                return;
+            } else{
+             res.json({message:'You are logged in', id:result.insertId});
+            }
+        })
     }
-}
+    }
 module.exports = Usercontroller;

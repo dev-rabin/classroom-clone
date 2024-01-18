@@ -5,7 +5,7 @@ const db = mysql.createConnection({
 	host: "localhost", 
 	user: "root", 
 	password: '',
-    database: "classroom"
+    database: "classroom_clone"
 }); 
 
 //Database connection
