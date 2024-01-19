@@ -37,7 +37,6 @@ const UserRegistration = () => {
     }
     return (
         <>
-
             <div className="container my-4 p-2 registration d-flex justify-content-around">
                 <div className="col-lg-5 col-md-5 align-items-center" >
                     <h1 className=''>Register Here</h1>
@@ -80,8 +79,6 @@ const UserRegistration = () => {
                 </div>
                 <div className='col-lg-5 col-md-5'><img className='img-fluid' src={SignUpImage} alt='Not available' /></div>
             </div>
-
-
         </>
     )
 }

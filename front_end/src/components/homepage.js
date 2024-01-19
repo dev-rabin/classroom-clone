@@ -6,7 +6,7 @@ function Homepage() {
     return (
         <>
             <NavbarPage />
-            <UserRegistration/>
+            <h1>Homepage</h1>
         </>
     )
 }

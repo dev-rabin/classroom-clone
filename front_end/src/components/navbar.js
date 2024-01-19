@@ -1,7 +1,8 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-
+import Login from './login';
+import { NavLink } from 'react-bootstrap';
 function NavbarPage() {
   return (
     <Navbar expand="md" className="navbar bg-success">
@@ -16,13 +17,14 @@ function NavbarPage() {
             <Nav.Link href="#about">About</Nav.Link>
           </Nav>
           <Nav className="">
-            <Nav.Link href="">Login</Nav.Link>
+            <NavLink to= "/login">Login</NavLink>
             <Nav.Link href="#logout">Sign Out</Nav.Link>
           </Nav>
-
         </Navbar.Collapse>
       </Container>
     </Navbar>
+
+    
   );
 }
 
