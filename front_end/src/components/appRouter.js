@@ -1,15 +1,14 @@
-// import { BrowserRouter as Router, Route} from "react-router-dom";
-// import Home from './homepage';
-// import Login from './login'; 
+import { BrowserRouter as Router, Route} from "react-router-dom";
+import Home from './homepage';
+import Login from './login'; 
 
-// const AppRouter = () => {
-//     return (
-//         <Router>
-            
-//             <Route path='/home' exact componet={Home}/>
-//             <Route path='/login' componet={Login} />
-//         </Router>
-//     )
-// }
+const AppRouter = () => {
+  return (
+    <Router>
+      <Route path="/login" exact component={Login} />
+      <Route path="/home" exact component={Home} />
+    </Router>
+  );
+};
 
-// export default AppRouter;
+export default AppRouter;
