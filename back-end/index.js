@@ -4,7 +4,6 @@ const port = 4000;
 const db = require('./src/connection');
 const cors = require('cors');
 
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
@@ -23,3 +22,9 @@ app.get('/user', (req, res)=> {
 });
 const userRouter = require('./src/routes/user_routes');
 app.use('/api', userRouter);
+
+const classRouter = require('./src/routes/class_routes');
+app.use('/api', classRouter);
+
+const teacherRouter = require('./src/routes/teacher_routes');
+app.use('/api', teacherRouter)
