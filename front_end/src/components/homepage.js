@@ -1,5 +1,4 @@
 import NavbarPage from "./navbar";
-import UserRegistration from "./user_registration";
 import "../index.css"
 
 function Homepage() {
@@ -7,7 +6,6 @@ function Homepage() {
         <>
             <NavbarPage />
             <h1>Homepage</h1>
-            <UserRegistration />
         </>
     )
 }

@@ -1,30 +1,28 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-// import Login from './login';
-// import { NavLink } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
+import '../App.css';
 function NavbarPage() {
   return (
     <Navbar expand="md" className="navbar bg-success">
       <Container>
-        <Navbar.Brand href="/home">Classroom</Navbar.Brand>
+        <Navbar.Brand to="/">Classroom</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="/home">Home</Nav.Link>
-            <Nav.Link href="/class">Classes</Nav.Link>
-            <Nav.Link href="/assignments">Assignments</Nav.Link>
-            <Nav.Link href="/about">About</Nav.Link>
+          <Nav className="me-auto navbar">
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/class">Classes</NavLink>
+            <NavLink to="/assignments">Assignments</NavLink>
+            <NavLink to="/about">About</NavLink>
           </Nav>
           <Nav className="">
-            <Nav.Link href= "/login">Login</Nav.Link>
-            <Nav.Link href="/logout">Sign Out</Nav.Link>
+            <NavLink to= "/login">Login</NavLink>
+            <NavLink to="/logout">Sign Out</NavLink>
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
-
-    
   );
 }
 

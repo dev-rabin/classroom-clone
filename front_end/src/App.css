@@ -14,4 +14,7 @@
     border: 2px solid rgb(36, 99, 37);
     border-radius: 8px;
 }
-
+.navbar a{
+   text-decoration: none;
+   margin: 10px 10px;
+}

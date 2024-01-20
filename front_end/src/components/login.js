@@ -3,7 +3,8 @@ import NavbarPage from './navbar';
 import Form from 'react-bootstrap/Form';
 import LoginImage from '../images/sign-up.png';
 import Button from 'react-bootstrap/Button';
-import { BrowserRouter as Redirect } from 'react-router-dom';
+import { BrowserRouter as Redirect, Link } from 'react-router-dom';
+import UserRegistration from './user_registration';
 
 const Login = () => {
         const [email, setEmail] = useState('');
@@ -27,9 +28,8 @@ const Login = () => {
         }
         }
         if(loggedIn){
-            return <Redirect to ='/home'/>
+            return <Redirect to ='/'/>
         }
-       
     return (
         <>
             <NavbarPage />
@@ -50,9 +50,9 @@ const Login = () => {
                     <Button variant="success" type='submit' onClick={handleLogin}>
                         Register
                     </Button>
+                    <Link to= {UserRegistration}>User Register Here</Link>
                 </div>
                 <div className='col-lg-5 col-md-5'><img className='img-fluid' src={LoginImage} alt='Not available'/></div>
-                
             </div>
         </>
     );
