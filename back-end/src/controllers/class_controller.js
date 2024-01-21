@@ -15,5 +15,4 @@ const classcontroller = {
         })
     },
 }
-
 module.exports = classcontroller;

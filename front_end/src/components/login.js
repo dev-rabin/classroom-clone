@@ -1,9 +1,8 @@
 import {useState} from 'react';
-import NavbarPage from './navbar';
 import Form from 'react-bootstrap/Form';
 import LoginImage from '../images/sign-up.png';
 import Button from 'react-bootstrap/Button';
-import { BrowserRouter as Redirect, Link } from 'react-router-dom';
+import {Navigate, Link } from 'react-router-dom';
 import UserRegistration from './user_registration';
 
 const Login = () => {
@@ -28,13 +27,14 @@ const Login = () => {
         }
         }
         if(loggedIn){
-            return <Redirect to ='/'/>
+            return <Navigate to ='/'/>
         }
     return (
         <>
-            <NavbarPage />
+            <div className='container mt-3 b-2'>
             <div className='container my-4 registration d-flex justify-content-center'>
                 <div className="col-lg-5 col-md-5 m-auto">
+                <h3 className='text-left'>Welcome to Classroom Clone</h3>
                     <Form.Group className="my-3 col-lg-12 col-md-12" controlId="exampleForm.ControlInput1">
                         <Form.Label>Email</Form.Label>
                         <Form.Control type="email" placeholder="Enter your email" value= {email} onChange={(e)=> {
@@ -48,11 +48,12 @@ const Login = () => {
                         }}/>
                     </Form.Group>
                     <Button variant="success" type='submit' onClick={handleLogin}>
-                        Register
+                        Login
                     </Button>
-                    <Link to= {UserRegistration}>User Register Here</Link>
+                    <Link className='mx-3 text-decoration-none' to= {UserRegistration}>User Register Here</Link>
                 </div>
                 <div className='col-lg-5 col-md-5'><img className='img-fluid' src={LoginImage} alt='Not available'/></div>
+            </div>
             </div>
         </>
     );

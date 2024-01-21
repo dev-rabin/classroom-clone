@@ -1,9 +1,12 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { NavLink } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import '../App.css';
+import { Button } from 'react-bootstrap';
 function NavbarPage() {
+
+
   return (
     <Navbar expand="md" className="navbar bg-success">
       <Container>
@@ -18,7 +21,7 @@ function NavbarPage() {
           </Nav>
           <Nav className="">
             <NavLink to= "/login">Login</NavLink>
-            <NavLink to="/logout">Sign Out</NavLink>
+            <Button>Log out</Button>
           </Nav>
         </Navbar.Collapse>
       </Container>
