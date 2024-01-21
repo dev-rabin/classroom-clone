@@ -1,4 +1,5 @@
-import NavbarPage from "./navbar"
+import NavbarPage from "../components/widgets/navbar"
+
 
 
 const AssignmentPage = () => {

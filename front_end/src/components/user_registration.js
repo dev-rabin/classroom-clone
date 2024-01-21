@@ -2,11 +2,10 @@ import Form from 'react-bootstrap/Form';
 import SignUpImage from '../images/sign-up.png';
 import Button from 'react-bootstrap/Button';
 import { useState } from "react";
-import Dropdown from 'react-bootstrap/Dropdown';
-
+import { NavLink } from 'react-router-dom';
+import "./App.css";
 const UserRegistration = () => {
     const [formData, setFormData] = useState({
-        user_type: "",
         name: "",
         email: "",
         password: "",
@@ -37,23 +36,9 @@ const UserRegistration = () => {
     }
     return (
         <>
-            <div className="container my-4 p-2 registration d-flex justify-content-around">
+            <div className="container col-lg-12 col-md-12 my-5 registration d-flex justify-content-center">
                 <div className="col-lg-5 col-md-5 align-items-center" >
-                    <h1 className=''>Register Here</h1>
-                    <Dropdown>
-                        <Dropdown.Toggle variant="success" id="dropdown-basic">
-                            Select User Type
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            <Dropdown.Item >Teacher</Dropdown.Item>
-                            <Dropdown.Item >Student</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
-                    <Form.Group className="my-3 col-lg-12 col-md-12" controlId="exampleForm.ControlInput1">
-                        <Form.Label>User</Form.Label>
-                        <Form.Control type="text" placeholder="Teacher or Student" name='user_type' value={formData.user_type} onChange={hadleInputChange} />
-                    </Form.Group>
-
+                    <h3 className='mt-5'>Register Here</h3>
                     <Form.Group className="mb-3 col-lg-12 col-md-12" controlId="exampleForm.ControlInput2">
                         <Form.Label>Name</Form.Label>
                         <Form.Control type="text" placeholder="Enter your name" name='name' value={formData.name} onChange={hadleInputChange} />
@@ -70,12 +55,13 @@ const UserRegistration = () => {
                     </Form.Group>
 
                     <Form.Group className="my-3 col-lg-12 col-md-12" controlId="exampleForm.ControlInput5">
-                        <Form.Label>Registration Number</Form.Label>
-                        <Form.Control type="text" placeholder="Enter your Registration No." name='roll_no' value={formData.roll_no} onChange={hadleInputChange} />
+                        <Form.Label>Roll No.</Form.Label>
+                        <Form.Control type="text" placeholder="Enter your Roll No." name='roll_no' value={formData.roll_no} onChange={hadleInputChange} />
                     </Form.Group>
                     <Button className='my-3' variant="success" type='submit' onClick={registerUser}>
                         Register
                     </Button>
+                    <NavLink to= "/login" className="login">Login Here</NavLink>
                 </div>
                 <div className='col-lg-5 col-md-5'><img className='img-fluid' src={SignUpImage} alt='Not available' /></div>
             </div>
