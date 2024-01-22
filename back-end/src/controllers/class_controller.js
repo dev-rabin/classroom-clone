@@ -2,10 +2,10 @@ const db = require('../connection');
 
 const classcontroller = {
     createClass : (req, res)=> {
-        const {class_name,teacher_id,} = req.body;
+        const {className,teacherId,} = req.body;
         console.log(req.body);
-        const query = 'insert into class (class_name,teacher_id) values (?,?)';
-        db.query(query,[class_name,teacher_id], (error, result) => {
+        const query = 'insert into class (className,teacherId) values (?,?)';
+        db.query(query,[className,teacherId], (error, result) => {
             if (error) {
                 res.json({message : error});
                 console.log(error)

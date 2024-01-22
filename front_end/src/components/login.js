@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import Form from 'react-bootstrap/Form';
 import LoginImage from '../images/sign-up.png';
 import Button from 'react-bootstrap/Button';
@@ -8,26 +8,39 @@ import {Navigate, NavLink } from 'react-router-dom';
 const Login = () => {
         const [email, setEmail] = useState('');
         const [password, setPassword] = useState('');
-        const [loggedIn, setLoggedIn] = useState(false);
+        const [user, setUser] = useState(null);
 
-      const  handleLogin =async () => {
+        useEffect(() => {
+            const storedUser = localStorage.setItem('user',user);
+            if (storedUser) {
+                setUser(JSON.parse(storedUser));
+            }
+        }, []);
+
+        const logout = async () => {
+            try {
+             
+              localStorage.removeItem('user');
+              setUser(null);
+              console.log("User log out");
+            } catch (error) {
+              console.error('Logout failed:', error.message);
+            }
+          };
+
+      const  handleLogin = async () => {
         try {
-            const result = await fetch('http://localhost:4000/api/login', {
+            const response = await fetch('http://localhost:4000/api/login', {
                 method : 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body : JSON.stringify({email, password}),
-            }).then(alert('You are logged in'));
-            setLoggedIn(true);
-            const data = await result.json()
-            console.log(data);
+            });
+            console.log(response.body);
         } catch (error) {
             console.error('Error During Login!',error.message);
         }
-        }
-        if(loggedIn){
-            return <Navigate to ='/'/>
         }
     return (
         <>
@@ -49,6 +62,9 @@ const Login = () => {
                     </Form.Group>
                     <Button variant="success" type='submit' onClick={handleLogin}>
                         Login
+                    </Button>
+                    <Button variant="danger" type='submit' onClick={logout}>
+                        Logout
                     </Button>
                     <NavLink className='mx-3 text-decoration-none' to= "/register" >User Register Here</NavLink>
                 </div>

@@ -17,7 +17,7 @@ function NavbarPage() {
             Signed in as: <a href="#login">Robin</a>
           </Navbar.Text>
           <Navbar.Text>
-            <NavLink to = "/login" className="mx-3">Log Out</NavLink>
+            <NavLink to = "/login" className="mx-3">Log In</NavLink>
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>
