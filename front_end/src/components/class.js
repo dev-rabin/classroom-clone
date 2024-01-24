@@ -1,7 +1,7 @@
 import NavbarPage from "../components/widgets/navbar"
 
 
-const ClassPage = () => {
+function ClassPage  ()  {
     return (
         <>
         <NavbarPage/>

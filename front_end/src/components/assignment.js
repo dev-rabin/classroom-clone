@@ -2,7 +2,7 @@ import NavbarPage from "../components/widgets/navbar"
 
 
 
-const AssignmentPage = () => {
+function AssignmentPage ()  {
     return (
         <>
         <NavbarPage/>

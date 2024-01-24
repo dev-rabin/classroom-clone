@@ -1,5 +1,5 @@
 import NavbarPage from "../components/widgets/navbar"
-const AboutPage = () => {
+function AboutPage () {
     return (
         <>
         <NavbarPage/>

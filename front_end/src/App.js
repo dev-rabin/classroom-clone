@@ -8,7 +8,8 @@ import ClassPage from "./components/class";
 import AboutPage from "./components/about";
 import AssignmentPage from "./components/assignment";
 import UserRegistration from "./components/user_registration";
-
+import ErrorPage from "./components/Error";
+import Logout from "./components/logOut";
 function App() {
   return (
 
@@ -21,6 +22,8 @@ function App() {
       <Route path="/about" element={<AboutPage/>}/>
       <Route path="/assignments" element={<AssignmentPage/>}/>
       <Route path="/register" element = {<UserRegistration/>}/>
+      <Route path ="/logout" element = {<Logout/>} />
+      <Route path ="*" element = {<ErrorPage/>} />
     </Routes>
    </BrowserRouter>
   );

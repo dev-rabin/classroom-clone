@@ -1,23 +1,38 @@
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import  Button  from 'react-bootstrap/Button';
-import { NavLink} from 'react-router-dom';
-import '../App.css';
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
+import { NavLink } from "react-router-dom";
+import "../App.css";
+import Drawer from "./drawer";
+import { useAuth } from "../store.js/auth";
+
 function NavbarPage() {
-
-
+  const { isLoggedIn } = useAuth();
   return (
     <Navbar className="bg-body-tertiary">
       <Container>
-      <Button variant='none'><span class="navbar-toggler-icon fs-5"></span></Button>
-       <NavLink to="/"><Navbar.Brand>Classroom</Navbar.Brand></NavLink>
+        {/* <Button variant='none'><span class="navbar-toggler-icon fs-5"></span></Button> */}
+        <Drawer />
+        <NavLink to="/">
+          <Navbar.Brand>Classroom</Navbar.Brand>
+        </NavLink>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
             Signed in as: <a href="#login">Robin</a>
           </Navbar.Text>
           <Navbar.Text>
-            <NavLink to = "/login" className="mx-3">Log In</NavLink>
+            {isLoggedIn ? (
+              <NavLink to="/logout" className="mx-3">
+                Logout
+              </NavLink>
+            ) : (
+              <>
+                <NavLink to="/login" className="mx-3">
+                  Login
+                </NavLink>
+                <NavLink to="/register">Register</NavLink>
+              </>
+            )}
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>
