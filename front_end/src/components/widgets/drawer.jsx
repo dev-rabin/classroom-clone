@@ -1,12 +1,12 @@
 // Import necessary dependencies
 import React, { useState } from 'react';
-import { AppBar, Drawer, List, ListItem, ListItemText, Toolbar, Typography } from '@mui/material';
+import { Drawer, List, ListItem, ListItemText,Typography } from '@mui/material';
 import {Button} from "react-bootstrap";
 import { NavLink } from 'react-router-dom';
-import "../App.css"
-
+import { useAuth } from '../store.js/auth';
 const DrawerMenu = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const {student} = useAuth();
 
     const toggleDrawer = (open) => () => {
         setDrawerOpen(open);
@@ -16,27 +16,26 @@ const DrawerMenu = () => {
             <Button variant='light' onClick={toggleDrawer(true)}><span className="navbar-toggler-icon fs-5 mx-2"></span></Button>
 
             {/* Left-side Drawer */}
-            <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
+            <Drawer PaperProps={{
+            sx: { width: "20%", padding: "30px", color:"black" },
+          }} anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
+            <div className='profile-picture'>Photo</div>
+            <Typography>{student ? student.studentData.email : "Your Email"}</Typography>
                 <List>
-                    <ListItem button onClick={toggleDrawer(false)}>
+                    <ListItem onClick={toggleDrawer(false)}>
                     <NavLink to= "/"><ListItemText primary="Home" /></NavLink>
                     </ListItem>
-                    <ListItem button onClick={toggleDrawer(false)}>
+                    <ListItem onClick={toggleDrawer(false)}>
                     <NavLink to= "/about"><ListItemText primary="About" /></NavLink>
                     </ListItem>
-                    <ListItem button onClick={toggleDrawer(false)}>
+                    <ListItem onClick={toggleDrawer(false)}>
                     <NavLink to= "/class"><ListItemText primary="Class" /></NavLink>
                     </ListItem>
-                    <ListItem button onClick={toggleDrawer(false)}>
+                    <ListItem onClick={toggleDrawer(false)}>
                     <NavLink to= "/assignments"><ListItemText primary="Assignments" /></NavLink>
                     </ListItem>
                 </List>
             </Drawer>
-
-            {/* Main Content */}
-
-            
-            {/* Your main content goes here */}
             {/* <div style={{ marginLeft: '240px', padding: '20px' }}>
                 
                 <Typography variant="h4" gutterBottom>

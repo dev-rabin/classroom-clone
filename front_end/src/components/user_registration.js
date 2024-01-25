@@ -36,7 +36,7 @@ const UserRegistration = () => {
           rollNo: "",
         });
         alert("You are registered")
-        navigate("/login");
+        navigate("/");
         console.log("User registered successfully");
       } else {
         // Handle registration failure (e.g., duplicate entry, validation error)

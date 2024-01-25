@@ -10,11 +10,11 @@ import AssignmentPage from "./components/assignment";
 import UserRegistration from "./components/user_registration";
 import ErrorPage from "./components/Error";
 import Logout from "./components/logOut";
+import NavbarPage from "./components/widgets/navbar";
 function App() {
   return (
-
-
    <BrowserRouter>
+   <NavbarPage/>
     <Routes>
       <Route path="/" element={<Homepage/>}/>
       <Route path="login" element={<Login/>}/>

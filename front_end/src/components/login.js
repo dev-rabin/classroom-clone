@@ -6,10 +6,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "./store.js/auth";
 
 
-
 const Login = () => {
- 
-
   const navigate = useNavigate();
   const {storeToken} = useAuth();
   const [user, setUser] = useState({

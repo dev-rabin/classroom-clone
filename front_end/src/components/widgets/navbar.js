@@ -6,7 +6,7 @@ import Drawer from "./drawer";
 import { useAuth } from "../store.js/auth";
 
 function NavbarPage() {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn,student } = useAuth();
   return (
     <Navbar className="bg-body-tertiary">
       <Container>
@@ -18,7 +18,8 @@ function NavbarPage() {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
-            Signed in as: <a href="#login">Robin</a>
+            Signed in as:
+             <b>{student ? student.studentData.name : isLoggedIn}</b>
           </Navbar.Text>
           <Navbar.Text>
             {isLoggedIn ? (
