@@ -2,10 +2,10 @@ require('dotenv').config();
 const secretKey = process.env.REACT_JWT_KEY1;
 const jwt = require('jsonwebtoken');
 
-function studentToken (student) {
+function studentToken (studentId,studentName) {
     const payload = {
-        studentId : student.studentId,
-        studentName : student.name
+        studentId : studentId,
+        studentName :studentName
     }
     const options = {
         expiresIn : "30D"

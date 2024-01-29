@@ -7,10 +7,11 @@ import Login from "./components/login";
 import ClassPage from "./components/class";
 import AboutPage from "./components/about";
 import AssignmentPage from "./components/assignment";
-import UserRegistration from "./components/user_registration";
+import StudentRegistration from "./components/registrations/student_registration";
 import ErrorPage from "./components/Error";
-import Logout from "./components/logOut";
 import NavbarPage from "./components/widgets/navbar";
+import TeacherRegistation from "./components/registrations/teacher_registration";
+import TeacherLogin from "./components/teacher_login";
 function App() {
   return (
    <BrowserRouter>
@@ -21,8 +22,9 @@ function App() {
       <Route path="/class" element={<ClassPage/>}/>
       <Route path="/about" element={<AboutPage/>}/>
       <Route path="/assignments" element={<AssignmentPage/>}/>
-      <Route path="/register" element = {<UserRegistration/>}/>
-      <Route path ="/logout" element = {<Logout/>} />
+      <Route path="/studentregister" element = {<StudentRegistration/>}/>
+      <Route path ="/registerteacher" element = {<TeacherRegistation/>} />
+      <Route path ="/loginteacher" element = {<TeacherLogin/>} />
       <Route path ="*" element = {<ErrorPage/>} />
     </Routes>
    </BrowserRouter>

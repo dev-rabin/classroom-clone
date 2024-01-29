@@ -4,6 +4,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [student, setStudent] = useState("");
+  const [teacher , setTeacher] = useState("");
   const storeToken = (serverToken) => {
     return localStorage.setItem("token", serverToken);
   };
@@ -33,14 +34,32 @@ export const AuthProvider = ({ children }) => {
       console.error(error);
     }
   };
+  const getTeacherData = async()=>{
+    try {
+      const response = await fetch("http://localhost:4000/api/teacher", {
+        method: "GET",
+        headers: {
+          authorization: token,
+        },
+      });
+      if (response.ok) {
+        const data = await response.json(); // Await the response.json() promise
+        console.log("Response data :", data);
+        setTeacher(data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   useEffect(() => {
     getStudentData();
+    // getTeacherData();
   }, []);
 
   return (
     <AuthContext.Provider
-      value={{ storeToken, logOutUser, isLoggedIn, student }}
+      value={{ storeToken, logOutUser, isLoggedIn, student , teacher}}
     >
       {children}
     </AuthContext.Provider>

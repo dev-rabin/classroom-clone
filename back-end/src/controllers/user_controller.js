@@ -3,24 +3,11 @@ const studentToken = require("../middleware/studentToken");
 const jwt = require('jsonwebtoken')
 
 const Usercontroller = {
-  //Get all users
-  getUsers: async (req, res) => {
-    db.query("select * from student", (error, result) => {
-      if (error) {
-        throw error;
-      } else {
-        res.json(result);
-      }
-    });
-  },
-
   //Create user
-
   createUser: (req, res) => {
     const { name, email, password, rollNo } = req.body;
     const query =
       "INSERT INTO student (name, email, password, rollNo) VALUES (?, ?, ?, ?)";
-
     db.query(query, [name, email, password, rollNo], (error, result) => {
       if (error) {
         if (error.code === "ER_DUP_ENTRY") {
@@ -36,14 +23,14 @@ const Usercontroller = {
         const studentId = result.insertId;
         const token = studentToken(studentId);
         const decodedToken = jwt.decode(token);
-        console.log("Decoded Token on Client:", decodedToken); // Retrieve the inserted ID
+        console.log("Decoded Token on Student:", decodedToken); // Retrieve the inserted ID
         res.json({
           success: true,
-          message: "Student added successfully",
+          message: "Student registered successfully",
           id: studentId,
           token: token,
         });
-        console.log("Create student", studentId, token);
+        console.log("student Created", studentId, token);
       }
     });
   },
@@ -74,7 +61,7 @@ const Usercontroller = {
             .json({ error: "Invalid credentials", success: false });
         }
         // Successful login
-        const token = generateToken(student);
+        const token = studentToken(student);
         const decodedToken = jwt.decode(token);
         console.log("Decoded Token on Client:", decodedToken);
         res.json({
@@ -92,7 +79,7 @@ const Usercontroller = {
         .json({ error: "Internal server error", success: false });
     }
   },
-  //  Get students by token
+  //  Get student by token
   getStudentByToken: (req, res) => {
     const studentId = req.studentId;
     console.log("StudentId:", studentId);

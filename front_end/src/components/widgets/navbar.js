@@ -6,7 +6,7 @@ import Drawer from "./drawer";
 import { useAuth } from "../store.js/auth";
 
 function NavbarPage() {
-  const { isLoggedIn,student } = useAuth();
+  const { isLoggedIn,student} = useAuth();
   return (
     <Navbar className="bg-body-tertiary">
       <Container>

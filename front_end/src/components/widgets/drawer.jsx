@@ -34,6 +34,9 @@ const DrawerMenu = () => {
                     <ListItem onClick={toggleDrawer(false)}>
                     <NavLink to= "/assignments"><ListItemText primary="Assignments" /></NavLink>
                     </ListItem>
+                    <ListItem onClick={toggleDrawer(false)}>
+                    <NavLink to= "/registerteacher"><ListItemText primary="Register As Teacher" /></NavLink>
+                    </ListItem>
                 </List>
             </Drawer>
             {/* <div style={{ marginLeft: '240px', padding: '20px' }}>

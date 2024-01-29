@@ -1,11 +1,11 @@
 import Form from "react-bootstrap/Form";
-import SignUpImage from "../images/sign-up.png";
+import SignUpImage from "./sign-up.png";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import "./App.css";
-import { useAuth } from "./store.js/auth";
-const UserRegistration = () => {
+import "../App.css";
+import { useAuth } from "../store.js/auth";
+const StudentRegistration = () => {
   const navigate = useNavigate();
   const {storeToken} = useAuth();
   const [formData, setFormData] = useState({
@@ -129,4 +129,4 @@ const UserRegistration = () => {
   );
 };
 
-export default UserRegistration;
+export default StudentRegistration;
