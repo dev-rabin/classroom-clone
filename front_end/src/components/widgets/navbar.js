@@ -1,27 +1,29 @@
-import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
-import { NavLink } from "react-router-dom";
-import "../App.css";
-import Drawer from "./drawer";
+import React from "react";
+import { Button, Container, Navbar } from "react-bootstrap";
+import { Link, NavLink, Navigate } from "react-router-dom";
+import Drawer from "./drawer"; // Assuming you have a Drawer component
 import { useAuth } from "../store.js/auth";
 
 function NavbarPage() {
-  const { isLoggedIn,student} = useAuth();
+  const { isLoggedIn, user } = useAuth();
+
   return (
     <Navbar className="bg-body-tertiary">
       <Container>
-        {/* <Button variant='none'><span class="navbar-toggler-icon fs-5"></span></Button> */}
-        <Drawer />
-        <NavLink to="/">
-          <Navbar.Brand>Classroom</Navbar.Brand>
-        </NavLink>
+        <Navbar.Brand>
+          <span className="drawer-toggle">
+            <Drawer />
+          </span>
+          <NavLink to="/">Classroom</NavLink>
+        </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text>
-            Signed in as:
-             <b>{student ? student.studentData.name : isLoggedIn}</b>
-          </Navbar.Text>
-          <Navbar.Text>
+
+          <Link to="/joinclass"><Button variant="primary">JoinClass</Button></Link>
+          {/* <Navbar.Text>
+            Signed in as: <b>{user ? user.userData.name : isLoggedIn}</b>
+          </Navbar.Text> */}
+          <Navbar.Text className="navlink">
             {isLoggedIn ? (
               <NavLink to="/logout" className="mx-3">
                 Logout

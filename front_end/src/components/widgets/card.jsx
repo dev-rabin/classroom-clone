@@ -4,7 +4,7 @@ import Image from "./sign-up.png"
 
 function Cards() {
   return (
-    <Card style={{ width: '20rem'}}>
+    <Card>
       <Card.Img variant="top" src={Image} />
       <Card.Body>
         <Card.Title>Card Title</Card.Title>

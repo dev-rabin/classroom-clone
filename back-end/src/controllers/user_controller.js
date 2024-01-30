@@ -1,5 +1,5 @@
 const db = require("../connection");
-const studentToken = require("../middleware/studentToken");
+const userToken = require("../middleware/userToken");
 const jwt = require('jsonwebtoken')
 
 const Usercontroller = {
@@ -7,7 +7,7 @@ const Usercontroller = {
   createUser: (req, res) => {
     const { name, email, password, rollNo } = req.body;
     const query =
-      "INSERT INTO student (name, email, password, rollNo) VALUES (?, ?, ?, ?)";
+      "INSERT INTO user (name, email, password, rollNo) VALUES (?, ?, ?, ?)";
     db.query(query, [name, email, password, rollNo], (error, result) => {
       if (error) {
         if (error.code === "ER_DUP_ENTRY") {
@@ -20,25 +20,25 @@ const Usercontroller = {
           throw error;
         }
       } else {
-        const studentId = result.insertId;
-        const token = studentToken(studentId);
+        const userId = result.insertId;
+        const token = userToken(userId);
         const decodedToken = jwt.decode(token);
         console.log("Decoded Token on Student:", decodedToken); // Retrieve the inserted ID
         res.json({
           success: true,
           message: "Student registered successfully",
-          id: studentId,
+          id: userId,
           token: token,
         });
-        console.log("student Created", studentId, token);
+        console.log("user Created", userId, token);
       }
     });
   },
 
-  //Login student
-  loginStudent: async (req, res) => {
+  //Login user
+  loginUser: async (req, res) => {
     const { email, password } = req.body;
-    const loginQuery = "SELECT * FROM student WHERE email=?";
+    const loginQuery = "SELECT * FROM user WHERE email=?";
     try {
       db.query(loginQuery, [email], (error, rows) => {
         if (error) {
@@ -53,24 +53,24 @@ const Usercontroller = {
             .status(401)
             .json({ error: "Invalid credentials", success: false });
         }
-        const student = rows[0];
-        if (student.password !== password) {
+        const user = rows[0];
+        if (user.password !== password) {
           // Invalid password
           return res
             .status(401)
             .json({ error: "Invalid credentials", success: false });
         }
         // Successful login
-        const token = studentToken(student);
+        const token = userToken(user);
         const decodedToken = jwt.decode(token);
         console.log("Decoded Token on Client:", decodedToken);
         res.json({
           success: true,
           message: "Login successful",
-          data: student,
+          data: user,
           token: token,
         });
-        console.log("Login student", token);
+        console.log("Login user", token);
       });
     } catch (error) {
       console.error("Unexpected error during login", error);
@@ -79,25 +79,25 @@ const Usercontroller = {
         .json({ error: "Internal server error", success: false });
     }
   },
-  //  Get student by token
-  getStudentByToken: (req, res) => {
-    const studentId = req.studentId;
-    console.log("StudentId:", studentId);
-    const query = "SELECT * FROM student WHERE studentId= ?;";
+  //  Get user by token
+  getUserByToken: (req, res) => {
+    const userId = req.userId;
+    console.log("userId:", userId);
+    const query = "SELECT * FROM user WHERE userId= ?;";
    try {
-    db.query(query, [studentId], (error, result) => {
+    db.query(query, [userId], (error, result) => {
       if (error) {
         return res.status(500).json({ message: "Internal Server Error" });
       }
       if (result.length === 0) {
-        return res.status(404).json({ message: "student not found" });
+        return res.status(404).json({ message: "user not found" });
       }
-      const studentData =  result[0];
-      console.log("Get Student :", studentData);
-      res.json({studentData});
+      const userData =  result[0];
+      console.log("Get user :", userData);
+      res.json({userData});
     });
    } catch (error) {
-    return res.status(500).json({ message: "Get no student" });
+    return res.status(500).json({ message: "Get no user" });
    }
   },
 };

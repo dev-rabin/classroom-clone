@@ -26,9 +26,6 @@ app.use('/api', userRouter);
 const classRouter = require('./src/routes/class_routes');
 app.use('/api', classRouter);
 
-const teacherRouter = require('./src/routes/teacher_routes');
-app.use('/api', teacherRouter);
-
 const classEnrollment = require('./src/routes/enroll_classRoutes');
 app.use('/api', classEnrollment);
 

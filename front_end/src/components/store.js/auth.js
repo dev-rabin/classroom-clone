@@ -3,12 +3,11 @@ import { createContext, useContext, useEffect, useState } from "react";
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [student, setStudent] = useState("");
-  const [teacher , setTeacher] = useState("");
+  const [user, setuser] = useState("");
   const storeToken = (serverToken) => {
     return localStorage.setItem("token", serverToken);
   };
-
+  
   let isLoggedIn = !!token;
   console.log("User Logged in", isLoggedIn);
 
@@ -17,9 +16,9 @@ export const AuthProvider = ({ children }) => {
     return localStorage.removeItem("token");
   };
 
-  const getStudentData = async () => {
+  const getUserData = async () => {
     try {
-      const response = await fetch("http://localhost:4000/api/student", {
+      const response = await fetch("http://localhost:4000/api/user", {
         method: "GET",
         headers: {
           authorization: token,
@@ -28,39 +27,18 @@ export const AuthProvider = ({ children }) => {
       if (response.ok) {
         const data = await response.json(); // Await the response.json() promise
         console.log("Response data :", data);
-        setStudent(data);
+        setuser(data);
       }
     } catch (error) {
       console.error(error);
     }
   };
-  const getTeacherData = async()=>{
-    try {
-      const response = await fetch("http://localhost:4000/api/teacher", {
-        method: "GET",
-        headers: {
-          authorization: token,
-        },
-      });
-      if (response.ok) {
-        const data = await response.json(); // Await the response.json() promise
-        console.log("Response data :", data);
-        setTeacher(data);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
   useEffect(() => {
-    getStudentData();
-    // getTeacherData();
+    getUserData();
   }, []);
 
   return (
-    <AuthContext.Provider
-      value={{ storeToken, logOutUser, isLoggedIn, student , teacher}}
-    >
+    <AuthContext.Provider value={{ storeToken, logOutUser, isLoggedIn, user}}>
       {children}
     </AuthContext.Provider>
   );

@@ -2,11 +2,11 @@ const db = require('../connection')
 
 const EnrollClassController = {
 
-    studentEnrollment : (req, res) => {
-        const {studentId, classId} = req.body
+    userEnrollment : (req, res) => {
+        const {userId, classId} = req.body
         console.log(req.body);
-        const query = "insert into classenrollment (studentId, classId) values (?,?)";
-        db.query(query, [studentId, classId], (error, result) => {
+        const query = "insert into classenrollment (userId, classId) values (?,?)";
+        db.query(query, [userId, classId], (error, result) => {
             if (error) {
                 res.json({message : error});
                 console.error(error);

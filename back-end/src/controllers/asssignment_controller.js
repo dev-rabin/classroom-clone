@@ -15,5 +15,4 @@ const AssignmentController = {
         })
     }
 }
-
 module.exports = AssignmentController;
