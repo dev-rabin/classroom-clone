@@ -13,7 +13,6 @@ const UserRegistration = () => {
     name: "",
     email: "",
     password: "",
-    rollNo: "",
   });
   const hadleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -34,7 +33,6 @@ const UserRegistration = () => {
           name: "",
           email: "",
           password: "",
-          rollNo: "",
         });
         alert("You are registered")
         navigate("/");
@@ -93,20 +91,6 @@ const UserRegistration = () => {
               placeholder="Enter your password"
               name="password"
               value={formData.password}
-              onChange={hadleInputChange}
-            />
-          </Form.Group>
-
-          <Form.Group
-            className="my-3 col-lg-12 col-md-12"
-            controlId="exampleForm.ControlInput5"
-          >
-            <Form.Label>Roll No.</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter your Roll No."
-              name="rollNo"
-              value={formData.rollNo}
               onChange={hadleInputChange}
             />
           </Form.Group>

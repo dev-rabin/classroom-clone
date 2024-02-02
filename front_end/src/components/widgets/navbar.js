@@ -20,9 +20,9 @@ function NavbarPage() {
         <Navbar.Collapse className="justify-content-end">
 
           <Link to="/joinclass"><Button variant="primary">JoinClass</Button></Link>
-          {/* <Navbar.Text>
-            Signed in as: <b>{user ? user.userData.name : isLoggedIn}</b>
-          </Navbar.Text> */}
+          <Navbar.Text>
+            Signed in as: <b>{user ? user.name : isLoggedIn}</b>
+          </Navbar.Text>
           <Navbar.Text className="navlink">
             {isLoggedIn ? (
               <NavLink to="/logout" className="mx-3">

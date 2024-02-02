@@ -36,6 +36,7 @@ const Login = () => {
       
       if (response.ok) {
         const response_data = await response.json();
+        console.log("login data : ", response_data);
         storeToken(response_data.token);
         alert('Login Successful');
         setUser({ email: "", password: "" });
@@ -87,7 +88,7 @@ const Login = () => {
             <Button variant="success" type="submit" onClick={handleLogin}>
               Login
             </Button>
-            <NavLink className="mx-3 text-decoration-none" to="/register">
+            <NavLink className="mx-3 text-decoration-none" to="/userregister">
               User Register Here
             </NavLink>
           </div>
