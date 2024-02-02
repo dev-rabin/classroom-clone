@@ -1,4 +1,3 @@
-const { query } = require('express');
 const db = require('../connection');
 
 const classcontroller = {
@@ -16,9 +15,10 @@ const classcontroller = {
         })
     },
 
-    getClassData: (req, res) => {
-        const { userId } = req.body; // Destructure parameters
-        console.log(userId) ;
+    getCreatedClassData: (req, res) => {
+        const userId  = req.body; // Destructure parameters
+        console.log("getCreatedClassData : body ",req.body) ;
+        console.log("getCreatedClassData : userId ",userId) ;
         const query = "select * from class where userId = ?";
         db.query(query, [userId], (error, result) => {
             if (error) {
@@ -26,11 +26,11 @@ const classcontroller = {
                 return res.status(500).json({ message: error });
             }
             if (result.length === 0) {
-                return res.status(404).json({ success: false, message: `class not found for classId: ${userId}`});
+                return res.status(200).json({ success: false, message: `class not found for userId: ${userId}`, data : []});
             }
-            const userClassData = result;
-            console.log("User class data:", userClassData);
-            res.json({ userClassData });
+            const createdClasses = result;
+            console.log("User class data:", createdClasses);
+            res.json({ success:true, data : createdClasses});
         });
     },
     

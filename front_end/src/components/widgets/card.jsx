@@ -1,21 +1,39 @@
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Image from "./sign-up.png"
+import Image from "./sign-up.png";
+import { useAuth } from '../store.js/auth';
 
 function Cards() {
-  return (
-    <Card>
-      <Card.Img variant="top" src={Image} />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
-  );
+  const { myClasses } = useAuth();
+  const [classesData, setClassesData] = useState([]);
+
+  useEffect(() => {
+    if (myClasses && myClasses.success && Array.isArray(myClasses.data)) {
+      setClassesData(myClasses.data);
+    }
+  }, [myClasses]);
+
+  if (classesData.length === 0) {
+    return <div>No classes found</div>;
+  } else {
+    return (
+      <div>
+        {classesData.map((classObj, index) => (
+          <Card key={index}>
+            <Card.Img variant="top" src={Image} />
+            <Card.Body>
+              <Card.Title> {classObj.className}</Card.Title>
+              <Card.Text>
+               
+              </Card.Text>
+              <Button variant="primary">Go somewhere</Button>
+            </Card.Body>
+          </Card>
+        ))}
+      </div>
+    );
+  }
 }
 
 export default Cards;
