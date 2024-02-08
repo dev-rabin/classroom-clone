@@ -1,20 +1,23 @@
 import "react-bootstrap";
-import "./widgets.css";
+import "../widgets/widgets.css";
 import { Button } from "react-bootstrap";
 import { Input } from "reactstrap";
+import { useAuth } from "../store/auth";
+import { NavLink } from "react-router-dom";
 function JoinClass() {
+    const {user} = useAuth();
+
     return (
         <>
             <div className="container rounded col-5 my-3 border">
             <p className="m-2">Currently, you are signed in as :</p>
            <div  className="d-flex justify-content-between m-2">
           <div>
-          <strong><div>Robin Mandhotia</div></strong>
-            <p>robinmandhotia@gmail.com</p>
+          <strong><div>{user ? user.name : "Your Name"}</div></strong>
+            <p>{user ? user.email : "Your Email"}</p>
           </div>
-          <Button variant="none" className="border m-2 account-btn">Switch Account</Button>
+          <NavLink to="/logout"><Button variant="none" className="border m-2 account-btn">Switch Account</Button></NavLink>
            </div>
-
             </div>
             <div className="container rounded col-5 my-3 border">
            <h3 className="m-2">Class Code</h3>

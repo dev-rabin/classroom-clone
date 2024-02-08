@@ -31,3 +31,7 @@
   .navlink a{
     text-decoration: none;
   }
+
+  .form-field:focus{
+    box-shadow: none;
+  }

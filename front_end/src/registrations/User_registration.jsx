@@ -3,8 +3,8 @@ import SignUpImage from "./sign-up.png";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import "../App.css";
-import { useAuth } from "../store.js/auth";
+import "../components/App.css";
+import { useAuth } from "../store/auth";
 
 const UserRegistration = () => {
   const navigate = useNavigate();

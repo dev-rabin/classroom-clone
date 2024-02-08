@@ -83,7 +83,7 @@ export const AuthProvider = ({ children }) => {
     } else {
       console.log("useEffect : user is null");
     }
-  }, [user]);
+  }, []);
 
   return (
     <AuthContext.Provider value={{ storeToken, logOutUser, isLoggedIn, user, myClasses }}>

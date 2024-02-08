@@ -1,5 +1,5 @@
 import React from "react";
-import Cards from "./widgets/card";
+import Cards from "../widgets/Cards";
 import "../index.css";
 
 function Homepage() {

@@ -1,8 +1,11 @@
 import React from "react";
-import { Button, Container, Navbar } from "react-bootstrap";
-import { Link, NavLink, Navigate } from "react-router-dom";
-import Drawer from "./drawer"; // Assuming you have a Drawer component
-import { useAuth } from "../store.js/auth";
+import { Container, Navbar } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import Drawer from "./Drawer"; // Assuming you have a Drawer component
+import { useAuth } from "../store/auth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import "./widgets.css";
 
 function NavbarPage() {
   const { isLoggedIn, user } = useAuth();
@@ -19,7 +22,13 @@ function NavbarPage() {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
 
-          <Link to="/joinclass"><Button variant="primary">JoinClass</Button></Link>
+          <div className="dropdown-secondry">
+          <FontAwesomeIcon icon={faPlus} fontSize="20px" className="mt-1 mx-3 bg-secondary p-3 rounded-circle text-white"/>
+          <div className="dropdown-content-secondry">
+         <NavLink to="/joinclass" className="text-decoration-none text-dark">Join Class</NavLink>
+         <NavLink to="/createClass" className="text-decoration-none text-dark">Create Class</NavLink>
+          </div>
+          </div>
           <Navbar.Text>
             Signed in as: <b>{user ? user.name : isLoggedIn}</b>
           </Navbar.Text>

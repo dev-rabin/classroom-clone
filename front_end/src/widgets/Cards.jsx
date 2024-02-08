@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Image from "./sign-up.png";
-import { useAuth } from '../store.js/auth';
+import { useAuth } from '../store/auth';
 
 function Cards() {
   const { myClasses } = useAuth();
