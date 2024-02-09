@@ -69,7 +69,7 @@ const Usercontroller = {
         res.json({
           success : true,
           message : "User Data get",
-          userData : userData
+          data : userData
         })
       }
     })

@@ -4,7 +4,6 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import '../src/components/App.css';
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 import Login from "./components/Login";
-import ClassPage from "./components/Classes";
 import AboutPage from "./components/About";
 import AssignmentPage from "./components/Assignments";
 import UserRegistration from "./registrations/User_registration";
@@ -14,6 +13,7 @@ import Logout from "./components/LogOut";
 import JoinClass from "./components/JoinClass";
 import SubmissionPage from "./components/Submissions";
 import CreateClassPage from "./components/CreateClass";
+import MyClassesPage from "./components/MyClasses";
 
 function App() {
   return (
@@ -22,10 +22,10 @@ function App() {
     <Routes>
       <Route path="/" element={<Homepage/>}/>
       <Route path="login" element={<Login/>}/>
-      <Route path="/classes" element={<ClassPage/>}/>
+      <Route path="/classes" element={<MyClassesPage/>}/>
       <Route path="/about" element={<AboutPage/>}/>
       <Route path="/assignments" element={<AssignmentPage/>}/>
-      <Route path="/userregister" element = {<UserRegistration/>}/>
+      <Route path="/register" element = {<UserRegistration/>}/>
       <Route path="/logout" element = {<Logout/>}/>
       <Route path="/joinclass" element={<JoinClass/>}/>
       <Route path="/createclass" element={<CreateClassPage/>}/>

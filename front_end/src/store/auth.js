@@ -4,7 +4,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [user, setUser] = useState(null);
-  const [myClasses , setMyClasses] = useState(null);
+  const [myClasses , setMyClasses] = useState([]);
   const isLoggedIn = !!token;
   console.log("User login",isLoggedIn);
   const storeToken = (serverToken) => {
@@ -26,10 +26,9 @@ export const AuthProvider = ({ children }) => {
         },
       });
       if (response.ok) {
-        const data = await response.json();
-        setUser(data.userData);
-        console.log("user :", user);
-        console.log(data.userData);
+        const responseData = await response.json();
+        setUser(responseData.data);
+        console.log(responseData.data);
       } else {
         setUser(null); // Reset user data if unauthorized or other error
       }
@@ -59,8 +58,9 @@ export const AuthProvider = ({ children }) => {
        body : JSON.stringify(bodyJson)
       });
       if (response.ok) {
-        const myClassesData = await response.json();
-        setMyClasses(myClassesData);
+        const responseData = await response.json();
+        console.log("my classes data...:", responseData.data);
+        setMyClasses(responseData.data);
       }
     } catch (error) {
       console.error(error);
@@ -83,7 +83,7 @@ export const AuthProvider = ({ children }) => {
     } else {
       console.log("useEffect : user is null");
     }
-  }, []);
+  }, [user]);
 
   return (
     <AuthContext.Provider value={{ storeToken, logOutUser, isLoggedIn, user, myClasses }}>

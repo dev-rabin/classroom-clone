@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 import { Input } from "reactstrap";
 import { useAuth } from "../store/auth";
 import { NavLink } from "react-router-dom";
+
 function JoinClass() {
     const {user} = useAuth();
 

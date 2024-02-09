@@ -88,7 +88,7 @@ const Login = () => {
             <Button variant="success" type="submit" onClick={handleLogin}>
               Login
             </Button>
-            <NavLink className="mx-3 text-decoration-none" to="/userregister">
+            <NavLink className="mx-3 text-decoration-none" to="/register">
               User Register Here
             </NavLink>
           </div>

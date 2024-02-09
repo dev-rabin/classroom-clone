@@ -16,9 +16,10 @@ const classcontroller = {
     },
 
     getCreatedClassData: (req, res) => {
-        const userId  = req.body; // Destructure parameters
-        console.log("getCreatedClassData : body ",req.body) ;
-        console.log("getCreatedClassData : userId ",userId) ;
+        const responseBody  = req.body; // Destructure parameters
+        console.log("getCreatedClassData response body log :",responseBody);
+        const userId = responseBody.userId;
+        console.log("getCreatedClassData : userId ",userId);
         const query = "select * from class where userId = ?";
         db.query(query, [userId], (error, result) => {
             if (error) {
@@ -26,7 +27,7 @@ const classcontroller = {
                 return res.status(500).json({ message: error });
             }
             if (result.length === 0) {
-                return res.status(200).json({ success: false, message: `class not found for userId: ${userId}`, data : []});
+                return res.status(200).json({ success: false, message: "class not found", data : []});
             }
             const createdClasses = result;
             console.log("User class data:", createdClasses);
