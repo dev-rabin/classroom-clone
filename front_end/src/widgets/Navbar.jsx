@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import Drawer from "./Drawer"; // Assuming you have a Drawer component
 import { useAuth } from "../store/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faSignOut } from "@fortawesome/free-solid-svg-icons";
 import "./widgets.css";
 
 function NavbarPage() {
@@ -21,9 +21,8 @@ function NavbarPage() {
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
-
           <div className="dropdown-secondry">
-          <FontAwesomeIcon icon={faPlus} fontSize="20px" className="mt-1 mx-3 bg-secondary p-3 rounded-circle text-white"/>
+          <FontAwesomeIcon icon={faPlus} fontSize="17px" className="mt-1 mx-3 bg-success p-3 rounded-circle text-white"/>
           <div className="dropdown-content-secondry">
          <NavLink to="/joinclass" className="text-decoration-none text-dark">Join Class</NavLink>
          <NavLink to="/createClass" className="text-decoration-none text-dark">Create Class</NavLink>
@@ -35,7 +34,7 @@ function NavbarPage() {
           <Navbar.Text className="navlink">
             {isLoggedIn ? (
               <NavLink to="/logout" className="mx-3">
-                Logout
+                <FontAwesomeIcon icon={faSignOut}/>
               </NavLink>
             ) : (
               <>

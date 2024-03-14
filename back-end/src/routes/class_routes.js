@@ -4,8 +4,8 @@ const classcontroller = require('../controllers/class_controller');
 
 
 classRouter.post('/createClass' , classcontroller.createClass);
-classRouter.post("/myCreatedClasses", classcontroller.getCreatedClassData);
 classRouter.get("/getAllClass" , classcontroller.getAllClass);
+classRouter.get("/teachingClasses", classcontroller.getTeachingClasses);
 
 
 module.exports = classRouter;

@@ -35,7 +35,7 @@ const UserRegistration = () => {
           password: "",
         });
         alert("You are registered")
-        navigate("/");
+        navigate("/login");
         console.log("User registered successfully");
       } else {
         // Handle registration failure (e.g., duplicate entry, validation error)

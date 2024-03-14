@@ -90,7 +90,6 @@ const Usercontroller = {
         }
     });
 },
-
 };
 
 module.exports = Usercontroller;

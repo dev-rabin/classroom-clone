@@ -13,7 +13,7 @@ import Logout from "./components/LogOut";
 import JoinClass from "./components/JoinClass";
 import SubmissionPage from "./components/Submissions";
 import CreateClassPage from "./components/CreateClass";
-import MyClassesPage from "./components/MyClasses";
+import EnrolledClassesPage from "./components/EnrolledClasses";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Homepage/>}/>
       <Route path="login" element={<Login/>}/>
-      <Route path="/classes" element={<MyClassesPage/>}/>
+      <Route path="/classes" element={<EnrolledClassesPage/>}/>
       <Route path="/about" element={<AboutPage/>}/>
       <Route path="/assignments" element={<AssignmentPage/>}/>
       <Route path="/register" element = {<UserRegistration/>}/>
