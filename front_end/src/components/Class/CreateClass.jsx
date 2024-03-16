@@ -1,5 +1,5 @@
 import { Button, Container, FloatingLabel, Form } from "react-bootstrap";
-import "./App.css";
+import "../App.css";
 function CreateClassPage() {
   
   return (

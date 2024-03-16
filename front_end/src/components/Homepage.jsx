@@ -1,14 +1,14 @@
 import React from "react";
-import MyClassesPage from "./EnrolledClasses";
 import "../index.css";
-import TeachingClassesPage from "./TeachingClasses";
+import MyClassesPage from "../components/Class/EnrolledClasses";
+import TeachingClassesPage from "../components/Class/TeachingClasses";
 
 function Homepage() {
     return (
         <>
           
                     <MyClassesPage />
-                    <TeachingClassesPage />
+                   <TeachingClassesPage/>
           
         </>
     );

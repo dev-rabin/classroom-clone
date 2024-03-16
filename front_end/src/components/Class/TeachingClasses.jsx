@@ -3,8 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowCircleRight } from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import Image from "../images/sign-up.png";
+import Image from "../images/teacher.png";
 import { Container } from "react-bootstrap";
+import "../App.css";
 
 function TeachingClassesPage() {
   const [teachingClass, setTeachingClass] = useState([]);
@@ -21,16 +22,22 @@ function TeachingClassesPage() {
           },
         }
       );
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.message}`);
+      }
+  
       const teachingClassesData = await response.json();
-      if (response.ok) {
-        console.log(
-          "Get teaching class data teachingClasses : ",
-          teachingClassesData.data
-        );
+      console.log("Response from server:", teachingClassesData);
+  
+      if (teachingClassesData && teachingClassesData.data) {
+        console.log("Get teaching class data teachingClasses: ", teachingClassesData.data);
         setTeachingClass(teachingClassesData.data);
+      } else {
+        console.log("Teaching class data not found in response:", teachingClassesData);
       }
     } catch (error) {
-      console.error("Error fetching teaching classes:", error);
+      console.log("Error fetching teaching classes:", error);
     }
   };
 
@@ -43,18 +50,17 @@ function TeachingClassesPage() {
       <Container className='my-2'>
         <h2 className="text-decoration-underline">Teaching</h2>
         <div className="d-flex flex-wrap">
-          {teachingClass.length === 0 ? (
-            <div>No classes found</div>
-          ) : (
-            teachingClass.map((classObj, index) => (
-              <Card key={index} style={{ width: "20rem", margin: "0.5rem" }}>
+          {teachingClass.length === 0 ? <div>No Teaching Classes for you!</div> : (
+            <div className="d-flex justify-content-center">
+            {teachingClass && teachingClass.map((classObj, index) => (
+              <Card key={index} style={{ width: "20rem", margin: "0.5rem"}} className="shadow">
                 <img
                   src={Image}
                   alt="Not-available"
                   style={{
                     height: "10rem",
                     objectFit: "scale-down",
-                    width: "auto"
+                    width: "auto",
                   }}
                 />
                 <Card.Body>
@@ -74,7 +80,10 @@ function TeachingClassesPage() {
                 </Card.Body>
               </Card>
             ))
+          }
+            </div>
           )}
+           
         </div>
       </Container>
     </>

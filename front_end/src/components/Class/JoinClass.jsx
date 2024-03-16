@@ -1,8 +1,8 @@
 import "react-bootstrap";
-import "../widgets/widgets.css";
+// import "../widgets/widgets.css";
 import { Button } from "react-bootstrap";
 import { Input } from "reactstrap";
-import { useAuth } from "../store/auth";
+import { useAuth } from "../../store/auth";
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 

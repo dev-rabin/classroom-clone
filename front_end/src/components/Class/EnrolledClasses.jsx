@@ -45,11 +45,11 @@ function EnrolledClassesPage() {
           ) : (
             <div className="d-flex justify-content-start">
               {myClasses.map((classObj, index) => (
-                <Card key={index} style={{ width: "20rem", margin: "0.5rem" }}>
+                <Card key={index} style={{ width: "20rem", margin: "0.5rem", }} className="shadow">
                   <img
                     src={Image}
                     alt="Not-available"
-                    style={{ height: "10rem", objectFit: "scale-down" ,width:"auto"}}
+                    style={{ height: "10rem", objectFit: "scale-down" ,width:"auto",}}
                   />
                   <Card.Body>
                     <Card.Title>{classObj.className}</Card.Title>

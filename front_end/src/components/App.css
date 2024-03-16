@@ -35,3 +35,11 @@
   .form-field:focus{
     box-shadow: none;
   }
+
+  .shadow{
+    transition: transform .2s;
+  }
+  .shadow:hover{
+    cursor: pointer;
+    transform: scale(1.02);
+  }
