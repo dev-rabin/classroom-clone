@@ -45,7 +45,7 @@ function EnrolledClassesPage() {
           ) : (
             <div className="d-flex justify-content-start">
               {myClasses.map((classObj, index) => (
-                <Card key={index} style={{ width: "20rem", margin: "0.5rem", }} className="shadow">
+                <Card key={index} style={{ width: "20rem", margin: "0.5rem", }} className="shadow" onClick={()=>{console.log("Enrolled classs clicked", index)}}>
                   <img
                     src={Image}
                     alt="Not-available"

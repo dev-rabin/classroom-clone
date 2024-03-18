@@ -55,5 +55,18 @@ const classcontroller = {
       }
     });
   },
+  getClassById : (req, res)=>{
+    const classId = req.params.classId;
+    const query = "select * from class where classId = ?";
+    db.query(query,classId,(error,result)=>{
+      if (error) {
+        console.error("Error during fetching by ClassId ", error);
+        return res.json({success:false, message: message.error});
+      }else{
+        console.log("Class data by ClassId : ", result);
+        return res.json({success:true, message:"Class data fetched successfully", data: result})
+      }
+    })
+  }
 };
 module.exports = classcontroller;

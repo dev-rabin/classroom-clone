@@ -15,6 +15,8 @@ import SubmissionPage from "./components/Assignment/Submissions";
 import CreateClassPage from "./components/Class/CreateClass";
 import EnrolledClassesPage from "./components/Class/EnrolledClasses";
 import Footer from "./widgets/Footer";
+import ClassDetails from "./components/Class/CLassDetails";
+import ClassWork from "./components/Class/ClassWork";
 
 function App() {
   return (
@@ -23,15 +25,21 @@ function App() {
     <Routes>
       <Route path="/" element={<Homepage/>}/>
       <Route path="login" element={<Login/>}/>
-      <Route path="/classes" element={<EnrolledClassesPage/>}/>
+      
+      <Route path="/class" element={<Homepage/>}>
+        <Route path="classes" element={<EnrolledClassesPage/>}/>
+        <Route path=":classId" element={<ClassDetails/>}/>
+        <Route path=":classId/classwork" element={<ClassWork/>}/>
+        <Route path="joinclass" element={<JoinClass/>}/>
+        <Route path="createclass" element={<CreateClassPage/>}/>
+      </Route>
+
       <Route path="/about" element={<AboutPage/>}/>
       <Route path="/assignments" element={<AssignmentPage/>}/>
       <Route path="/register" element = {<UserRegistration/>}/>
       <Route path="/logout" element = {<Logout/>}/>
-      <Route path="/joinclass" element={<JoinClass/>}/>
-      <Route path="/createclass" element={<CreateClassPage/>}/>
       <Route path="/submissions" element={<SubmissionPage/>}/>
-      <Route path ="*" element = {<ErrorPage/>} />
+      {/* <Route path ="*" element = {<ErrorPage/>} /> */}
     </Routes>
     <Footer/>
    </BrowserRouter>

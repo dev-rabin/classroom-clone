@@ -6,10 +6,12 @@ import Card from "react-bootstrap/Card";
 import Image from "../images/teacher.png";
 import { Container } from "react-bootstrap";
 import "../App.css";
+import { Link } from "react-router-dom";
 
 function TeachingClassesPage() {
   const [teachingClass, setTeachingClass] = useState([]);
   const token = localStorage.getItem("token");
+  
 
   const getTeachingClasses = async () => {
     try {
@@ -45,6 +47,7 @@ function TeachingClassesPage() {
     getTeachingClasses();
   }, []);
 
+ 
   return (
     <>
       <Container className='my-2'>
@@ -53,7 +56,9 @@ function TeachingClassesPage() {
           {teachingClass.length === 0 ? <div>No Teaching Classes for you!</div> : (
             <div className="d-flex justify-content-center">
             {teachingClass && teachingClass.map((classObj, index) => (
-              <Card key={index} style={{ width: "20rem", margin: "0.5rem"}} className="shadow">
+             <Card key={index} style={{ width: "20rem", margin: "0.5rem"}} className="shadow"
+              >
+             <Link to={`class/${classObj.classId}`}>
                 <img
                   src={Image}
                   alt="Not-available"
@@ -71,13 +76,13 @@ function TeachingClassesPage() {
                       Teacher id: {classObj.teacherId}
                     </Card.Subtitle>
                     <Button variant="success" className="p-1 my-2">
-                      Go{" "}
                       <span>
                         <FontAwesomeIcon icon={faArrowCircleRight} />
                       </span>
                     </Button>
                   </div>
                 </Card.Body>
+             </Link>
               </Card>
             ))
           }
