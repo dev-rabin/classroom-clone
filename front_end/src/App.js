@@ -5,7 +5,6 @@ import '../src/components/App.css';
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 import Login from "./components/Login";
 import AboutPage from "./components/About";
-import AssignmentPage from "./components/Assignment/Assignments";
 import UserRegistration from "./registrations/User_registration";
 import ErrorPage from "./components/Error";
 import NavbarPage from "./widgets/Navbar";
@@ -17,29 +16,33 @@ import EnrolledClassesPage from "./components/Class/EnrolledClasses";
 import Footer from "./widgets/Footer";
 import ClassDetails from "./components/Class/CLassDetails";
 import ClassWork from "./components/Class/ClassWork";
+import CreateAssignmentsPage from "./components/Assignment/CreateAssignments";
 
 function App() {
   return (
    <BrowserRouter>
    <NavbarPage/>
     <Routes>
+      {/* Home Route */}
       <Route path="/" element={<Homepage/>}/>
-      <Route path="login" element={<Login/>}/>
-      
-      <Route path="/class" element={<Homepage/>}>
-        <Route path="classes" element={<EnrolledClassesPage/>}/>
-        <Route path=":classId" element={<ClassDetails/>}/>
-        <Route path=":classId/classwork" element={<ClassWork/>}/>
-        <Route path="joinclass" element={<JoinClass/>}/>
-        <Route path="createclass" element={<CreateClassPage/>}/>
-      </Route>
 
-      <Route path="/about" element={<AboutPage/>}/>
-      <Route path="/assignments" element={<AssignmentPage/>}/>
-      <Route path="/register" element = {<UserRegistration/>}/>
+      {/* Auth Routes */}
+      <Route path="login" element={<Login/>}/>
       <Route path="/logout" element = {<Logout/>}/>
+      
+      {/* Class Routes */}
+        <Route path="/classes" element={<EnrolledClassesPage/>}/>
+        <Route path="/class/:classId" element={<ClassDetails/>}/>
+        <Route path="/joinclass" element={<JoinClass/>}/>
+        <Route path="/createclass" element={<CreateClassPage/>}/>
+        <Route path="/:classId/classwork" element={<ClassWork/>}/>
+
+      {/* Navigation Routes */}
+      <Route path="/about" element={<AboutPage/>}/>
+      <Route path="/createassignment/:classId" element={<CreateAssignmentsPage/>}/>
+      <Route path="/register" element = {<UserRegistration/>}/>
       <Route path="/submissions" element={<SubmissionPage/>}/>
-      {/* <Route path ="*" element = {<ErrorPage/>} /> */}
+      <Route path ="*" element = {<ErrorPage/>} />
     </Routes>
     <Footer/>
    </BrowserRouter>

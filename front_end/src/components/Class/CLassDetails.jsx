@@ -8,29 +8,28 @@ import "./Class.css";
 function ClassDetails() {
   const { classId } = useParams();
   const [classDetails, setClassDetails] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const getClassByClassId = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:4000/api/class/${classId}`
+  const getClassByClassId = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:4000/api/class/${classId}`
+      );
+      if (response.ok) {
+        const classData = await response.json();
+        console.log("Class data retrieved successfully:", classData);
+        setClassDetails(classData.data);
+      } else {
+        console.error(
+          "Error fetching data by class ID:",
+          response.statusText
         );
-        if (response.ok) {
-          const classData = await response.json();
-          console.log("Class data retrieved successfully:", classData);
-          setClassDetails(classData.data);
-        } else {
-          console.error(
-            "Error fetching data by class ID:",
-            response.statusText
-          );
-        }
-      } catch (error) {
-        console.error("Error fetching data by class ID:", error);
       }
-    };
-
+    } catch (error) {
+      console.error("Error fetching data by class ID:", error);
+    }
+  };
+  useEffect(() => {
     getClassByClassId();
   }, [classId]);
 
@@ -40,7 +39,9 @@ function ClassDetails() {
         <div className="d-flex justify-content-between">
           <div className="d-flex justify-content-between align-items-center col-4 class-navbar">
             <div>Stream</div>
-            <div onClick={()=> navigate("/class/:classId/classwork")}>Classwork</div>
+            <div onClick={() => navigate(`/${classId}/classwork`)}>
+              Classwork
+            </div>
             <div>People</div>
             <div>Grades</div>
           </div>
@@ -53,10 +54,10 @@ function ClassDetails() {
         ) : (
           <div>
             {classDetails.map((classData, index) => (
-              <>
-                <div key={index}>{classData.className}</div>
+              <div key={index}>
+                <div>{classData.className}</div>
                 <div>{classData.classDesc}</div>
-              </>
+              </div>
             ))}
           </div>
         )}

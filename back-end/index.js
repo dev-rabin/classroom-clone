@@ -10,6 +10,8 @@ app.use(cors());
 app.listen(port, ()=>{
     console.log(`Server starting at ${port}`);
 });
+app.use('/api/uploads', express.static('uploads'));
+
 
 app.get('/user', (req, res)=> {
     db.ping((error)=>{
