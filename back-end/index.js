@@ -36,3 +36,6 @@ app.use('/api', assignmentRouter);
 
 const submissionRouter = require('./src/routes/submissionRouter');
 app.use('/api', submissionRouter);
+
+const announcementRouter = require('./src/routes/announcement_routes');
+app.use('/api',announcementRouter)

@@ -58,7 +58,7 @@ function TeachingClassesPage() {
             {teachingClass && teachingClass.map((classObj, index) => (
              <Card key={index} style={{ width: "20rem", margin: "0.5rem"}} className="shadow"
               >
-             <Link to={`class/${classObj.classId}`}>
+             <Link to={`teachingclass/${classObj.classId}`}>
                 <img
                   src={Image}
                   alt="Not-available"

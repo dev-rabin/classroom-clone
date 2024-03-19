@@ -1,12 +1,13 @@
-import { createContext, useContext, useEffect, useState , } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [user, setUser] = useState(null);
- 
+
   const isLoggedIn = !!token;
-  console.log("User login",isLoggedIn);
+  console.log("User login", isLoggedIn);
+
   const storeToken = (serverToken) => {
     console.log("Server token:", serverToken);
     setToken(serverToken);
@@ -17,6 +18,7 @@ export const AuthProvider = ({ children }) => {
     setToken("");
     localStorage.removeItem("token");
   };
+
   const getUserData = async () => {
     try {
       const response = await fetch("http://localhost:4000/api/user", {
@@ -38,7 +40,28 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
- 
+  const createAnnouncement = async (announcement) => {
+    try {
+      const response = await fetch(
+        "http://localhost:4000/api/createannouncement",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+          },
+          body: JSON.stringify(announcement),
+        }
+      );
+      if (response.ok) {
+        console.log("createAnnouncement successfully ! ");
+        return alert("Announcement created");
+      }
+    } catch (error) {
+      console.error("createAnnouncement error : ", error);
+      return alert("Error creating announcement");
+    }
+  };
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -48,14 +71,14 @@ export const AuthProvider = ({ children }) => {
     }
   }, [isLoggedIn]);
 
-
   return (
-    <AuthContext.Provider value={{ storeToken, logOutUser, isLoggedIn, user}}>
+    <AuthContext.Provider
+      value={{ storeToken, logOutUser, isLoggedIn, user, createAnnouncement }}
+    >
       {children}
     </AuthContext.Provider>
   );
 };
-
 
 export const useAuth = () => {
   const authContextValue = useContext(AuthContext);

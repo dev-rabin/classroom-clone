@@ -10,13 +10,11 @@ function ClassWork() {
   const [assignments, setAssignments] = useState([]);
 
   useEffect(() => {
-    // Fetch assignments for the class with classId
     fetchAssignments(classId);
   }, [classId]);
 
   const fetchAssignments = async (classId) => {
     try {
-      // Fetch assignments from backend API using classId
       const response = await fetch(`http://localhost:4000/api/assignments/${classId}`);
       if (response.ok) {
         const assignments = await response.json();
@@ -38,6 +36,8 @@ function ClassWork() {
           </span>
           Create
         </Button>
+        <div className="fs-2">Topic Names</div>
+        <hr />
         {assignments.map((assignment, index) => (
           <div key={index}>
             <Card className="my-3 p-3 container mx-auto hover">

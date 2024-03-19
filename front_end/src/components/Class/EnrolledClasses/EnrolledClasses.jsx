@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import Image from "../images/sign-up.png";
+import Image from "../../images/sign-up.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { Container } from "react-bootstrap";
+import {useNavigate } from "react-router-dom";
 
 function EnrolledClassesPage() {
   const token = localStorage.getItem("token");
   const [myClasses, setMyClasses] = useState([]);
+  const navigate = useNavigate()
 
   const myJoinedClasses = async () => {
     try {
@@ -19,7 +21,7 @@ function EnrolledClassesPage() {
           headers: {
             Authorization: token,
           },
-        }
+        } 
       );
       const myClassesData = await response.json();
       if (response.ok) {
@@ -35,6 +37,11 @@ function EnrolledClassesPage() {
     myJoinedClasses();
   }, []);
 
+  const handleMyClassesData = (classData) => {
+    navigate(`/enrolledclass/${classData.classId}`,{
+      state : {classData : classData}
+    })
+  }
   return (
     <>
       <Container className="my-2">
@@ -45,7 +52,8 @@ function EnrolledClassesPage() {
           ) : (
             <div className="d-flex justify-content-start">
               {myClasses.map((classObj, index) => (
-                <Card key={index} style={{ width: "20rem", margin: "0.5rem", }} className="shadow" onClick={()=>{console.log("Enrolled classs clicked", index)}}>
+                <Card key={index} style={{ width: "20rem", margin: "0.5rem", }} className="shadow" 
+                onClick={()=> handleMyClassesData(classObj)}>
                   <img
                     src={Image}
                     alt="Not-available"
@@ -59,7 +67,7 @@ function EnrolledClassesPage() {
                         Teacher id : {classObj.teacherId}
                       </Card.Subtitle>
                       <Button variant="success" className="p-1 my-2">
-                        Go{" "}
+                        Go
                         <span>
                           <FontAwesomeIcon icon={faArrowCircleRight} />
                         </span>
