@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowCircleRight } from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import Image from "../images/teacher.png";
+import Image from "../../images/teacher.png";
 import { Container } from "react-bootstrap";
-import "../App.css";
+import "../../App.css";
 import { Link } from "react-router-dom";
 
 function TeachingClassesPage() {
@@ -47,6 +47,12 @@ function TeachingClassesPage() {
     getTeachingClasses();
   }, []);
 
+  const convertTime = (dateTimeString) => {
+    const date = new Date(dateTimeString);
+    return date.toLocaleDateString('en-US',{
+      timeZone : "Asia/Kolkata"
+    })
+  }
  
   return (
     <>
@@ -58,16 +64,18 @@ function TeachingClassesPage() {
             {teachingClass && teachingClass.map((classObj, index) => (
              <Card key={index} style={{ width: "20rem", margin: "0.5rem"}} className="shadow"
               >
-             <Link to={`teachingclass/${classObj.classId}`}>
-                <img
-                  src={Image}
-                  alt="Not-available"
-                  style={{
-                    height: "10rem",
-                    objectFit: "scale-down",
-                    width: "auto",
-                  }}
-                />
+             <Link to={`teachingclass/${classObj.classId}`} className="text-decoration-none">
+             <div className="d-flex justify-content-center">
+                  <img
+                    src={Image}
+                    alt="Not-available"
+                    style={{
+                      height: "10rem",
+                      objectFit: "scale-down",
+                      width: "auto",
+                    }}
+                  />
+                </div>
                 <Card.Body>
                   <Card.Title>{classObj.className}</Card.Title>
                   <Card.Text>{classObj.classDesc}</Card.Text>
@@ -81,6 +89,7 @@ function TeachingClassesPage() {
                       </span>
                     </Button>
                   </div>
+                  <Card.Text>Created at : {convertTime(classObj.createdAt)}</Card.Text>
                 </Card.Body>
              </Link>
               </Card>

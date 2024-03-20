@@ -1,7 +1,7 @@
 import React from "react";
 import "../index.css";
 import MyClassesPage from "../components/Class/EnrolledClasses/EnrolledClasses";
-import TeachingClassesPage from "../components/Class/TeachingClasses";
+import TeachingClassesPage from "../components/Class/TeachingClasses/TeachingClasses";
 
 function Homepage() {
     return (

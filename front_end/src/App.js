@@ -12,14 +12,15 @@ import Logout from "./components/LogOut";
 import JoinClass from "./components/Class/JoinClass";
 import SubmissionPage from "./components/Assignment/Submissions";
 import CreateClassPage from "./components/Class/CreateClass";
-import EnrolledClassesPage from "./components/Class/EnrolledClasses/EnrolledClasses";
 import Footer from "./widgets/Footer";
-import ClassDetails from "./components/Class/CLassDetails";
+import ClassDetails from "./components/Class/TeachingClasses/CLassDetails";
 import CreateAssignmentsPage from "./components/Assignment/CreateAssignments";
-import ClassWork from "./components/Class/ClassWork";
-import ClassGrades from "./components/Class/ClassGrades";
-import ClassPeople from "./components/Class/ClassPeople";
+import ClassWork from "./components/Class/TeachingClasses/ClassWork";
+import ClassGrades from "./components/Class/TeachingClasses/ClassGrades";
+import ClassPeople from "./components/Class/TeachingClasses/ClassPeople";
 import EnrolledClassDetails from "./components/Class/EnrolledClasses/EnrolledClassDetails";
+import EnrollClassWork from "./components/Class/EnrolledClasses/EnrollClassWork";
+import EnrollClassPeople from "./components/Class/EnrolledClasses/EnrollClassPeople";
 
 function App() {
   return (
@@ -39,8 +40,12 @@ function App() {
           <Route path="people" element={<ClassPeople />} />
           <Route path="grades" element={<ClassGrades />} />
         </Route>
+        
         {/* Enrolled Class Routes */}
-        <Route path="/enrolledclass/:classId" element={<EnrolledClassDetails />} />
+        <Route path="/enrolledclass/:classId" element={<EnrolledClassDetails />}>
+        <Route path="classwork" element={<EnrollClassWork />} />
+        <Route path="people" element={<EnrollClassPeople />} />
+        </Route>
 
         {/* Class Routes */}
         <Route path="/joinclass" element={<JoinClass />} />

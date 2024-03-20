@@ -3,6 +3,7 @@ import { Button, Container, Card, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis, faPlus, faFile } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, useParams } from "react-router-dom";
+import "../Class.css"
 
 function ClassWork() {
   const { classId } = useParams();
@@ -27,6 +28,16 @@ function ClassWork() {
     }
   };
 
+  const attachmentFileOpen = (fileAttach) => {
+    window.open(`http://localhost:4000/api/${fileAttach}`,'_blank')
+  }
+
+  const convertDateTime =(dateTimeString)=>{
+    const date = new Date(dateTimeString);
+    return date.toLocaleDateString('en-US',{
+      timezone : "Asia/Kolkata"
+    })
+  }
   return (
     <div>
       <Container className="border rounded p-4 my-3">
@@ -40,7 +51,7 @@ function ClassWork() {
         <hr />
         {assignments.map((assignment, index) => (
           <div key={index}>
-            <Card className="my-3 p-3 container mx-auto hover">
+            <Card className="my-3 p-3 container mx-auto shadow classwork-card" onClick={()=>attachmentFileOpen(assignment.fileAttach)}>
               <Row>
                 <Col>
                   <div className="d-flex align-items-center">
@@ -51,7 +62,7 @@ function ClassWork() {
                       <Card.Subtitle>
                         Posted a new Assignment : {assignment.title}
                       </Card.Subtitle>
-                      <Card.Text>Due Date : {assignment.dueDate}</Card.Text>
+                      <Card.Text>Due Date : {convertDateTime(assignment.dueDate)}</Card.Text>
                     </div>
                   </div>
                 </Col>

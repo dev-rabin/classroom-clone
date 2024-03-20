@@ -67,6 +67,19 @@ const classcontroller = {
         return res.json({success:true, message:"Class data fetched successfully", data: result})
       }
     })
+  },
+  getAllEnrolledStudentsByClassId : (req, res) => {
+    const classId = req.params.classId;
+    const query = "SELECT enrollmentId,studentId,classId,name,email FROM classroom_clone.classenroll inner join user on classenroll.studentId = user.userId where classId = ?;"
+    db.query(query,classId,(error,result)=>{
+      if (error) {
+        console.error("getAllEnrolledStudentsByClassId error : ",error.message);
+        return res.json({success:false, message: error.message});
+      }else{
+        console.log("getAllEnrolledStudentsByClassId result : ", result);
+        return res.json({success:true,message:"Your students fetched succesfully", data: result})
+      }
+    })
   }
 };
 module.exports = classcontroller;

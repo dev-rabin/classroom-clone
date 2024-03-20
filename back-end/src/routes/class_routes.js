@@ -6,7 +6,8 @@ const classcontroller = require('../controllers/class_controller');
 classRouter.post('/createClass' , classcontroller.createClass);
 classRouter.get("/getAllClass" , classcontroller.getAllClass);
 classRouter.get("/teachingClasses", classcontroller.getTeachingClasses);
-classRouter.get("/class/:classId", classcontroller.getClassById)
+classRouter.get("/class/:classId", classcontroller.getClassById);
+classRouter.get("/:classId/enrolledstudents",classcontroller.getAllEnrolledStudentsByClassId);
 
 
 module.exports = classRouter;

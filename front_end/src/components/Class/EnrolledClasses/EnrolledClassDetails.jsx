@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import {Card, Container } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Card, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile, faMessage } from "@fortawesome/free-solid-svg-icons";
-import { useLocation, useParams } from "react-router-dom";
+import { useNavigate, useParams, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../../../store/auth";
 
 function EnrolledClassDetails() {
-  const location = useLocation();
-  const {createAnnouncement} = useAuth();
+  const { createAnnouncement, getAnnouncements, getClassByClassId, classDetails } = useAuth();
   const { classId } = useParams();
-  const classData = location.state?.classData || {};
   const [announcementCreate, setAnnouncementCreate] = useState({
     class_id: classId,
     announcement: "",
   });
+  const navigate = useNavigate();
+  const location = useLocation()
 
   const handleCreateAnnouncement = async () => {
     try {
-      if (announcementCreate.announcement.trim() !== '') {
+      if (announcementCreate.announcement.trim() !== "") {
         await createAnnouncement(announcementCreate); 
         console.log("handleCreateAnnouncement clicked ");
         setAnnouncementCreate({
@@ -26,40 +26,65 @@ function EnrolledClassDetails() {
         });
       } else {
         console.log("Announcement content is empty");
-        alert("Announcement content is empty")
+        alert("Announcement content is empty");
       }
     } catch (error) {
       console.error("Error creating announcement:", error);
     }
   };
   
-
   const handleInputAnnouncement = (e) => {
     const { name, value } = e.target;
     setAnnouncementCreate((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  console.log("Enrolled class data : ", classData);
+  useEffect(() => {
+    getClassByClassId(classId);
+    getAnnouncements(classId);
+  }, [classId]);
+
+  const isLinkActive = (path) => {
+    return location.pathname === path ? "text-decoration-underline" : "";
+  };
+
   return (
     <div>
       <Container>
-        <div className="container my-4 navbar">
-          <div className="d-flex justify-content-between align-items-center col-3 class-navbar">
-            <div>Stream</div>
-            <div>Classwork</div>
-            <div>People</div>
-          </div>
+      <div className="container my-4">
+      <div className="d-flex justify-content-between align-items-center col-3 class-navbar">
+        <div
+          onClick={() => navigate(`/enrolledclass/${classId}`)}
+          className={isLinkActive(`/enrolledclass/${classId}`)}
+        >
+          Stream
         </div>
-        <Container className="bg-secondary rounded text-white p-5 my-5">
-          <div>
-            <div>
-              <p>{classData.className}</p>
-              <p>{classData.classDesc}</p>
-            </div>
+        <div
+          onClick={() => navigate("classwork")}
+          className={isLinkActive("classwork")}
+        >
+          Classwork
+        </div>
+        <div
+          onClick={() => navigate("people")}
+          className={isLinkActive("people")}
+        >
+          People
+        </div>
+      </div>
+    </div>
+        <Container className="rounded text-white p-5 my-5 shadow" style={{background: "#298943"}}>
+          <div className="fw-bold">
+            {classDetails && classDetails.map((classObj, index) => (
+              <div key={index}>
+                <p>{classObj.className}</p>
+                <p>{classObj.classDesc}</p>
+              </div>
+            ))}
           </div>
         </Container>
-        <div>Annoucements</div>
-        <Card className="my-2 p-3 container mx-auto hover">
+        <Outlet />
+        <div className="fs-3">Announcements</div>
+        <Card className="my-2 p-3 container mx-auto hover shadow">
           <div className="d-flex justify-content-around align-items-center">
             <div className="col-10">
               <input
@@ -73,26 +98,23 @@ function EnrolledClassDetails() {
               />
             </div>
             <div>
-            <button
+              <button
                 className="btn btn-success"
-                onClick={() => {
-                  handleCreateAnnouncement();
-                  console.log("Clicked");
-                }}
+                onClick={handleCreateAnnouncement}
               >
                 <FontAwesomeIcon icon={faMessage} fontSize="20px" />
               </button>
             </div>
           </div>
         </Card>
-        <Card className="my-2 p-4 container mx-auto hover">
+        <Card className="my-2 p-4 container mx-auto hover shadow">
           <div className="d-flex align-items-center">
             <div className="bg-success p-2 rounded-circle">
               <FontAwesomeIcon icon={faFile} fontSize={"18px"} color="white" />
             </div>
             <div className="p-2">
               <Card.Subtitle>
-                Posted a announcement : New Announcement
+                Posted an announcement: New Announcement
               </Card.Subtitle>
             </div>
           </div>

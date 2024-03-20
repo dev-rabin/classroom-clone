@@ -50,7 +50,7 @@ const EnrollClassController = {
     getClassesByStudentId : (req, res) =>{
        const payload = jwt.decode(req.headers.authorization);
        const studentId = payload.userId;
-       const query = "select * from classenroll INNER JOIN class ON classenroll.classId = class.classId;";
+       const query = "select * from classenroll INNER JOIN class ON classenroll.classId = class.classId inner join user on class.teacherId = user.userId where studentId = ?;";
        db.query(query,studentId,(error,result)=>{
             if (error) {
                 console.error("getClassesByStudentId error : ", error);

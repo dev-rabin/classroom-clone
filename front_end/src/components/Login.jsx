@@ -55,8 +55,8 @@ const Login = () => {
 
   return (
     <>
-      <div className="container col-lg-12 col-md-12 my-5 ">
-        <div className="container my-4 registration d-flex justify-content-center">
+      <div className="container col-lg-12 col-md-12">
+        <div className="container my-2 registration d-flex justify-content-center">
           <div className="col-lg-5 col-md-5 m-auto">
             <h3 className="text-left">Welcome to Classroom Clone</h3>
             <Form.Group
