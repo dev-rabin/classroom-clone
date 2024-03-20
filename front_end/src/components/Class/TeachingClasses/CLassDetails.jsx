@@ -7,21 +7,22 @@ import "../Class.css";
 import { useAuth } from "../../../store/auth";
 
 function ClassDetails() {
-  const { createAnnouncement, getAnnouncements, announcementData,getClassByClassId,classDetails } = useAuth();
+  const { createAnnouncement, getAnnouncements, announcementData, getClassByClassId, classDetails } = useAuth();
   const { classId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   const [announcementCreate, setAnnouncementCreate] = useState({
     class_id: classId,
     announcement: "",
   });
 
-
+  const [creatingAnnouncement, setCreatingAnnouncement] = useState(false);
 
   const handleCreateAnnouncement = async () => {
     try {
       if (announcementCreate.announcement.trim() !== "") {
+        setCreatingAnnouncement(true); // Set creatingAnnouncement to true
         await createAnnouncement(announcementCreate);
         setAnnouncementCreate({
           class_id: classId,
@@ -47,9 +48,18 @@ function ClassDetails() {
     getClassByClassId(classId);
   }, [classId]);
 
+  useEffect(() => {
+    if (announcementData && creatingAnnouncement) {
+      // Reset creatingAnnouncement and refresh page only once
+      setCreatingAnnouncement(false);
+      window.location.reload();
+    }
+  }, [announcementData, creatingAnnouncement]);
+
   const isLinkActive = (path) => {
     return location.pathname === path ? "text-decoration-underline" : "";
   }
+
   return (
     <>
       <Container className="p-1">
@@ -65,11 +75,11 @@ function ClassDetails() {
             </div>
           </div>
         </div>
-        <Container className="rounded text-white p-5 my-5 shadow" style={{background:"#FF843E"}}>
+        <Container className="rounded text-white p-5 my-5 shadow" style={{ background: "rgb(255, 164, 71)" }}>
           {classDetails.map((classObj, index) => (
             <div key={index} className="fw-bold">
-              <p>{classObj.className}</p>
-              <p>{classObj.classDesc}</p>
+              <p className="fs-1">{classObj.className}</p>
+              <p className="fs-2">{classObj.classDesc}</p>
             </div>
           ))}
         </Container>

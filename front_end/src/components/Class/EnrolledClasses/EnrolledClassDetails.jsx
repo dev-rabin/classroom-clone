@@ -76,8 +76,8 @@ function EnrolledClassDetails() {
           <div className="fw-bold">
             {classDetails && classDetails.map((classObj, index) => (
               <div key={index}>
-                <p>{classObj.className}</p>
-                <p>{classObj.classDesc}</p>
+                <p className="fs-2">{classObj.className}</p>
+                <p className="fs-3">{classObj.classDesc}</p>
               </div>
             ))}
           </div>

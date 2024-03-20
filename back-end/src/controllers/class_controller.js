@@ -9,10 +9,10 @@ const classcontroller = {
       "insert into class (className,teacherId,classDesc ) values (?,?,?)";
     db.query(query, [className, teacherId, classDesc], (error, result) => {
       if (error) {
-        res.json({ message: error });
+      return  res.json({ message: error });
         console.log(error);
       } else {
-        res.json({ message: "Class has been created :", id: result.insertId });
+       return res.json({ message: "Class has been created :", id: result.insertId, });
       }
     });},
   getAllClass: (req, res) => {

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../components/App.css";
 import { useAuth } from "../store/auth";
+import { Alert } from "react-bootstrap";
 
 const UserRegistration = () => {
   const navigate = useNavigate();
@@ -17,7 +18,17 @@ const UserRegistration = () => {
   const hadleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const [error,setError] = useState("");
+
   const registerUser = async () => {
+    if (!formData.email.trim() || !formData.name.trim() || !formData.password) {
+      setError("Please fill all details!");
+      return;
+    }
+    if (!formData.password.length < 6) {
+      setError("Password should be at least 6 characters long!");
+      return;
+    }
     try {
       const response = await fetch("http://localhost:4000/api/createAccount", {
         method: "POST",
@@ -38,10 +49,8 @@ const UserRegistration = () => {
         navigate("/login");
         console.log("User registered successfully");
       } else {
-        // Handle registration failure (e.g., duplicate entry, validation error)
         const errorData = await response.json();
         console.error("Error during registration: ", errorData.message);
-        // Optionally, you can set state to show an error message to the user
         alert(errorData.message);
       }
     } catch (error) {
@@ -50,9 +59,9 @@ const UserRegistration = () => {
   };
   return (
     <>
-      <div className="container col-lg-12 col-md-12 my-5 registration d-flex justify-content-center">
-        <div className="col-lg-5 col-md-5 align-items-center">
-          <h3 className="mt-5">Register Here</h3>
+      <div className="container col-lg-12 col-md-12 my-1 registration d-flex justify-content-center">
+        <div className="col-lg-5 col-md-5 align-items-center my-5">
+          <h3 className="my-4">Register Here</h3>
           <Form.Group
             className="mb-3 col-lg-12 col-md-12"
             controlId="exampleForm.ControlInput2"
@@ -94,8 +103,9 @@ const UserRegistration = () => {
               onChange={hadleInputChange}
             />
           </Form.Group>
+          {error && <Alert variant="danger">{error}</Alert>}
           <Button
-            className="my-3"
+            className="my-2"
             variant="success"
             type="submit"
             onClick={registerUser}
@@ -103,7 +113,7 @@ const UserRegistration = () => {
             Register
           </Button>
           <NavLink to="/login" className="login">
-            Login Here
+           <Button variant="dark" className="mx-2">Login</Button>
           </NavLink>
         </div>
         <div className="col-lg-5 col-md-5">

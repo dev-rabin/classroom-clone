@@ -4,6 +4,7 @@ import LoginImage from "./images/sign-up.png";
 import Button from "react-bootstrap/Button";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
+import { Alert } from "react-bootstrap";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -23,7 +24,13 @@ const Login = () => {
     });
   };
 
+  const [error,setError] = useState("");
+
   const handleLogin = async () => {
+    if (!user.email.trim() || !user.password) {
+      setError("Please fill all details!");
+      return;
+    }
     try {
       const response = await fetch("http://localhost:4000/api/login", {
         method: "POST",
@@ -85,11 +92,12 @@ const Login = () => {
                 onChange={handleOnChange}
               />
             </Form.Group>
+            {error && <Alert variant="danger">{error}</Alert>}
             <Button variant="success" type="submit" onClick={handleLogin}>
               Login
             </Button>
-            <NavLink className="mx-3 text-decoration-none" to="/register">
-              User Register Here
+            <NavLink className="mx-2 text-decoration-none" to="/register">
+              <Button variant="dark">Register</Button>
             </NavLink>
           </div>
           <div className="col-lg-5 col-md-5">
