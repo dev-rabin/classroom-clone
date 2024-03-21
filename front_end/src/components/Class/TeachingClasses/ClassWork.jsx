@@ -4,29 +4,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis, faPlus, faFile } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, useParams } from "react-router-dom";
 import "../Class.css"
+import { useAuth } from "../../../store/auth";
 
 function ClassWork() {
   const { classId } = useParams();
   const navigate = useNavigate();
-  const [assignments, setAssignments] = useState([]);
+ const {fetchAssignments, assignments} = useAuth();
 
   useEffect(() => {
     fetchAssignments(classId);
   }, [classId]);
 
-  const fetchAssignments = async (classId) => {
-    try {
-      const response = await fetch(`http://localhost:4000/api/assignments/${classId}`);
-      if (response.ok) {
-        const assignments = await response.json();
-        setAssignments(assignments.data);
-      } else {
-        console.error("Failed to fetch assignments");
-      }
-    } catch (error) {
-      console.error("Error fetching assignments:", error);
-    }
-  };
+
 
   const attachmentFileOpen = (fileAttach) => {
     window.open(`http://localhost:4000/api/${fileAttach}`,'_blank')
@@ -51,7 +40,7 @@ function ClassWork() {
         <hr />
         {assignments.map((assignment, index) => (
           <div key={index}>
-            <Card className="my-3 p-3 container mx-auto shadow classwork-card" onClick={()=>attachmentFileOpen(assignment.fileAttach)}>
+            <Card className="my-3 p-3 container mx-auto shadow classwork-card" >
               <Row>
                 <Col>
                   <div className="d-flex align-items-center">
@@ -59,7 +48,7 @@ function ClassWork() {
                       <FontAwesomeIcon icon={faFile} fontSize={"18px"} color="white" />
                     </div>
                     <div className="p-2">
-                      <Card.Subtitle>
+                      <Card.Subtitle onClick={()=>attachmentFileOpen(assignment.fileAttach)} className="text-decoration-underline">
                         Posted a new Assignment : {assignment.title}
                       </Card.Subtitle>
                       <Card.Text>Due Date : {convertDateTime(assignment.dueDate)}</Card.Text>
@@ -67,7 +56,8 @@ function ClassWork() {
                   </div>
                 </Col>
                 <Col xs="auto">
-                  <div className="text-end">
+                  <div className="d-flex justify-content-between align-items-center">
+                      <Card.Footer>Points : {assignment.points}</Card.Footer>
                     <FontAwesomeIcon icon={faEllipsis} />
                   </div>
                 </Col>

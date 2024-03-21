@@ -49,7 +49,7 @@ function EnrolledClassDetails() {
 
   return (
     <div>
-      <Container>
+      <Container className="mb-5">
       <div className="container my-4">
       <div className="d-flex justify-content-between align-items-center col-3 class-navbar">
         <div
@@ -72,7 +72,7 @@ function EnrolledClassDetails() {
         </div>
       </div>
     </div>
-        <Container className="rounded text-white p-5 my-5 shadow" style={{background: "#298943"}}>
+        <Container className="rounded text-white p-4 my-5 shadow" style={{background: "#298943"}}>
           <div className="fw-bold">
             {classDetails && classDetails.map((classObj, index) => (
               <div key={index}>
@@ -83,7 +83,7 @@ function EnrolledClassDetails() {
           </div>
         </Container>
         <Outlet />
-        <div className="fs-3">Announcements</div>
+        <div className="fs-3 mx-2">Announcements</div>
         <Card className="my-2 p-3 container mx-auto hover shadow">
           <div className="d-flex justify-content-around align-items-center">
             <div className="col-10">

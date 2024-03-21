@@ -32,7 +32,7 @@ const AssignmentController = {
     },
     getAssignmentsByClassId : (req, res) => {
         const classId = req.params.classId;
-        const query = "select * from assignment where classId = ?";
+        const query = "select assignmentId,assignment.classId,name,title,description,className,fileAttach,points,dueDate,assignment.createdAt from assignment join class on assignment.classId = class.classId join user on class.classId = user.userId where assignment.classId = ?;"
         db.query(query,classId,(error,result)=>{
             if (error) {
                 console.error("getAssignmentByClassId error : ", error);
@@ -40,6 +40,20 @@ const AssignmentController = {
             } else {
                 console.log("getAssignmentByClassId result", result);
                 return res.json({success:true, message:"Your assignments fetched!", data: result})
+            }
+        })
+    },
+    getAssignmentByAssignmentId : (req,res) => {
+        const assignmentId = req.params.assignmentId;
+        const query = "select * from assignment where assignmentId = ?";
+        db.query(query,assignmentId,(error,result)=>{
+            if (error) {
+                console.error("getAssignmentByAssignmentId error : ",error);
+                return res.json({success:false,message: error.message});
+            }else {
+                const assignmentData = result[0];
+                console.log("getAssignmentByAssignmentId assignmentData : ",assignmentData);
+                return res.json({success : true, message : "Assignment fetched successfully",data : assignmentData});
             }
         })
     }

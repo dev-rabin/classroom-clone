@@ -69,10 +69,7 @@ function EnrolledClassesPage() {
                         Teacher : {classObj.name}
                       </Card.Subtitle>
                       <Button variant="success" className="p-1 my-2">
-                        Go
-                        <span>
                           <FontAwesomeIcon icon={faArrowCircleRight} />
-                        </span>
                       </Button>
                     </div>
                       <Card.Text>Created at : {convertDateTime(classObj.createdAt)}</Card.Text>

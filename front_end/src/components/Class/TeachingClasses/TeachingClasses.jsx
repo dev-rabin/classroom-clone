@@ -56,7 +56,7 @@ function TeachingClassesPage() {
  
   return (
     <>
-      <Container className='my-2'>
+      <Container className='my-5'>
         <h2 className="text-decoration-underline">Teaching</h2>
         <div className="d-flex flex-wrap">
           {teachingClass.length === 0 ? <div>No Teaching Classes for you!</div> : (
@@ -81,7 +81,7 @@ function TeachingClassesPage() {
                   <Card.Text>{classObj.classDesc}</Card.Text>
                   <div className="d-flex justify-content-between">
                     <Card.Subtitle className="my-auto">
-                      Teacher id: {classObj.teacherId}
+                      Your id: {classObj.teacherId}
                     </Card.Subtitle>
                     <Button variant="success" className="p-1 my-2">
                       <span>

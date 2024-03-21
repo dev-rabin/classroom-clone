@@ -4,7 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 
 function CreateAssignmentsPage() {
     const {classId} = useParams();
-    const navigate = useNavigate();
     console.log("CreateAssignmentsPage classId : ", classId);
     const [assignment, setAssignment] = useState({
     classId: classId,
@@ -54,7 +53,6 @@ function CreateAssignmentsPage() {
           dueDate: "",
           fileAttach: null,
         });
-        navigate("/:classId/classwork");
         console.log("Assignment has been created : ", assignmentData);
       }
      

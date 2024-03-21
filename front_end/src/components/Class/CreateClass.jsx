@@ -50,7 +50,7 @@ function CreateClassPage() {
 
   return (
     <>
-      <Container className="border p-3 my-2 col-10">
+      <Container className="border p-3 my-2 col-10 shadow">
         <h1 className="text-center my-3">Create Class</h1>
         <div className="mx-auto col-6">
           <FloatingLabel

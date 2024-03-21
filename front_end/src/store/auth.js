@@ -7,6 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [studentsList,setStudentsList] = useState([]);
   const [announcementData, setAnnouncementData] = useState([]);
   const [classDetails, setClassDetails] = useState([]);
+  const [assignments, setAssignments] = useState([]);
 
   const isLoggedIn = !!token;
   console.log("User login", isLoggedIn);
@@ -121,6 +122,21 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // Fetch assignments API Calling
+  const fetchAssignments = async (classId) => {
+    try {
+      const response = await fetch(`http://localhost:4000/api/assignments/${classId}`);
+      if (response.ok) {
+        const assignments = await response.json();
+        console.log("fetchAssignments data : ",assignments);
+        setAssignments(assignments.data);
+      } else {
+        console.error("Failed to fetch assignments");
+      }
+    } catch (error) {
+      console.error("Error fetching assignments:", error);
+    }
+  };
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -128,6 +144,7 @@ export const AuthProvider = ({ children }) => {
       getAllStudentsByClassId();
       getAnnouncements();
       getClassByClassId();
+      fetchAssignments();
     } else {
       setUser(null);
     }
@@ -135,7 +152,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ storeToken, logOutUser, isLoggedIn, user, createAnnouncement,studentsList,getAllStudentsByClassId,getAnnouncements,announcementData,getClassByClassId ,classDetails}}
+      value={{ storeToken, logOutUser, isLoggedIn, user, createAnnouncement,studentsList,getAllStudentsByClassId,getAnnouncements,announcementData,getClassByClassId ,classDetails,fetchAssignments,assignments}}
     >
       {children}
     </AuthContext.Provider>

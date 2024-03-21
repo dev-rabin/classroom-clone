@@ -21,6 +21,7 @@ import ClassPeople from "./components/Class/TeachingClasses/ClassPeople";
 import EnrolledClassDetails from "./components/Class/EnrolledClasses/EnrolledClassDetails";
 import EnrollClassWork from "./components/Class/EnrolledClasses/EnrollClassWork";
 import EnrollClassPeople from "./components/Class/EnrolledClasses/EnrollClassPeople";
+import AssignmentDetails from "./components/Assignment/AssignmentDetails";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
         <Route path="/joinclass" element={<JoinClass />} />
         <Route path="/createclass" element={<CreateClassPage />} />
         <Route path="/createassignment/:classId" element={<CreateAssignmentsPage />} />
+        <Route path="/enrollclass/assignmentdetails/:assignmentId" element={<AssignmentDetails/>}/>
 
         {/* Navigation Routes */}
         <Route path="/about" element={<AboutPage />} />

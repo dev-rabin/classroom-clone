@@ -1,13 +1,14 @@
-import React from 'react'
+import React from 'react';
 
 function Footer() {
   return (
-    <>
-      <div className='container-fluid bg-success p-2 mt-5'>
+    <footer className='fixed-bottom bg-success p-2'>
+      <div className='container-fluid'>
         <p className='text-center fw-500 text-white'>@All Rights Reserved!</p>
       </div>
-    </>
-  )
+    </footer>
+  );
 }
 
-export default Footer
+export default Footer;
+

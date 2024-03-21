@@ -62,7 +62,7 @@ function ClassDetails() {
 
   return (
     <>
-      <Container className="p-1">
+      <Container className="p-1 mb-5">
         <div className="container my-4 navbar">
           <div className="d-flex justify-content-between">
             <div className="d-flex justify-content-between align-items-center col-4 class-navbar">
@@ -75,7 +75,7 @@ function ClassDetails() {
             </div>
           </div>
         </div>
-        <Container className="rounded text-white p-5 my-5 shadow" style={{ background: "rgb(255, 164, 71)" }}>
+        <Container className="rounded text-white p-3 my-5 shadow" style={{ background: "#FF843E" }}>
           {classDetails.map((classObj, index) => (
             <div key={index} className="fw-bold">
               <p className="fs-1">{classObj.className}</p>
@@ -84,7 +84,7 @@ function ClassDetails() {
           ))}
         </Container>
         <Outlet />
-        <div className="fs-3">Announcements</div>
+        <div className="fs-3 mx-3">Announcements</div>
         <Card className="my-2 p-3 container mx-auto hover">
           <div className="d-flex justify-content-around align-items-center">
             <div className="col-10">
